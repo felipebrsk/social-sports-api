@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     Authentication\LoginController,
+    Authentication\RegisterController,
     Authentication\VerificationController,
     Authentication\ResetPasswordController,
     Authentication\ForgotPasswordController,
@@ -20,4 +21,5 @@ Route::prefix('authentication')->name('authentication.')->group(function () {
     });
 
     Route::post('login', LoginController::class)->name('login');
+    Route::post('register', RegisterController::class)->name('register');
 });

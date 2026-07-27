@@ -6,6 +6,7 @@ use Tymon\JWTAuth\JWTGuard;
 use App\DTOs\Authentication\LoginAttempt;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use App\Contracts\Repositories\Authentication\AuthRepositoryInterface;
+use App\Models\User;
 
 class AuthRepository implements AuthRepositoryInterface
 {
@@ -37,5 +38,13 @@ class AuthRepository implements AuthRepositoryInterface
             'email' => $loginAttempt->email,
             'password' => $loginAttempt->password,
         ]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function loginByUser(User $user): string
+    {
+        return $this->guard->login($user);
     }
 }

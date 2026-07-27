@@ -4,6 +4,7 @@ namespace Tests\Unit\Repositories\Authentication;
 
 use Mockery;
 use Tests\TestCase;
+use App\Models\User;
 use Mockery\MockInterface;
 use Tymon\JWTAuth\JWTGuard;
 use App\DTOs\Authentication\LoginAttempt;
@@ -79,6 +80,29 @@ class AuthRepositoryTest extends TestCase
             ->andReturn($token);
 
         $result = $this->authRepository->attempt($dto);
+
+        $this->assertSame($token, $result);
+    }
+
+    /**
+     * Test if can authenticate by a given user instance.
+     *
+     * @return void
+     */
+    public function test_if_can_authenticate_by_a_given_user_instance(): void
+    {
+        $token = fake()->md5();
+
+        /** @var User&MockInterface $user */
+        $user = Mockery::mock(User::class);
+
+        $this->guard
+            ->shouldReceive('login')
+            ->once()
+            ->with($user)
+            ->andReturn($token);
+
+        $result = $this->authRepository->loginByUser($user);
 
         $this->assertSame($token, $result);
     }

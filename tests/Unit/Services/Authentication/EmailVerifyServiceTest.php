@@ -253,7 +253,7 @@ class EmailVerifyServiceTest extends TestCase
 
         $this->emailVerifyService->verify($dto);
 
-        Event::assertDispatched(Verified::class, function ($event) use ($user) {
+        Event::assertDispatched(Verified::class, function (Verified $event) use ($user) {
             return $event->user === $user;
         });
     }

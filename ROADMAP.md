@@ -20,11 +20,11 @@
     - [x] Endpoint `GET /authentication/email/verify/{id}/{hash}` (`authentication.email.verify`).
   - [x] `VerificationController` - `resend`: Reenvia a notificação de verificação de e-mail caso o usuário solicite.
     - [x] Endpoint `POST /authentication/email/resend` (`authentication.email.resend`).
-- [ ] **1.6. Cadastro de Usuário (`RegisterController`)**
-  - [ ] Request `RegisterRequest`, DTO `RegisterUser` e Service `RegisterUserService`.
-  - [ ] Disparo automático de e-mail com link assinado para verificação (`MustVerifyEmail`).
-  - [ ] Criação do registro padrão em `profiles`.
-  - [ ] Endpoint `POST /authentication/register` (`authentication.register`).
+- [x] **1.6. Cadastro de Usuário (`RegisterController`)**
+  - [x] Request `RegisterRequest`, DTO `RegisterUser` e Service `RegisterUserService`.
+  - [x] Disparo automático de e-mail com link assinado para verificação (`MustVerifyEmail`).
+  - [x] Criação do registro padrão em `profiles`.
+  - [x] Endpoint `POST /authentication/register` (`authentication.register`).
 - [ ] **1.7. Gestão do Perfil Pessoal (`ProfileController`)**
   - [ ] Resource `ProfileResource`, DTO `UpdateProfile`.
   - [ ] Endpoint `GET /profile` (`profile.show`): Dados do perfil + redes sociais.

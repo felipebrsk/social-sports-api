@@ -59,6 +59,7 @@ class FeedbackTest extends BaseModelTesting implements
         $casts = [
             'id' => 'int',
             'user_id' => 'int',
+            'deleted_at' => 'datetime',
             'feedbackable_id' => 'int',
             'feedback_status_id' => 'int',
             'feedback_category_id' => 'int',
