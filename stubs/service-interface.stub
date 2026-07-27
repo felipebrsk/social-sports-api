@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Contracts\Services;
+
+use App\Models\$CLASS$;
+use App\Contracts\Services\AbstractServiceInterface;
+
+/**
+ * @extends AbstractServiceInterface<$CLASS$>
+ */
+interface $CLASS$ServiceInterface extends AbstractServiceInterface
+{
+}

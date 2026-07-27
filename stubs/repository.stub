@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\$CLASS$;
+use App\Repositories\AbstractRepository;
+use App\Contracts\Repositories\$CLASS$RepositoryInterface;
+
+/**
+ * @extends AbstractRepository<$CLASS$>
+ */
+class $CLASS$Repository extends AbstractRepository implements $CLASS$RepositoryInterface
+{
+    /**
+     * {@inheritDoc}
+     */
+    protected array $allowedFilters = [];
+
+    /**
+     * {@inheritDoc}
+     */
+    protected array $allowedSorts = [];
+
+    /**
+     * Create a new repository instance.
+     *
+     * @param $CLASS$ $model
+     * @return void
+     */
+    public function __construct($CLASS$ $model)
+    {
+        parent::__construct($model);
+    }
+}

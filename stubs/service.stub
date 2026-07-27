@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\$CLASS$;
+use App\Services\AbstractService;
+use App\Contracts\Services\$CLASS$ServiceInterface;
+use App\Contracts\Repositories\$CLASS$RepositoryInterface;
+
+/**
+ * @extends AbstractService<$CLASS$, $CLASS$RepositoryInterface>
+ */
+class $CLASS$Service extends AbstractService implements $CLASS$ServiceInterface
+{
+    /**
+     * Create a new service instance.
+     *
+     * @param $CLASS$RepositoryInterface $repository
+     * @return void
+     */
+    public function __construct($CLASS$RepositoryInterface $repository)
+    {
+        parent::__construct($repository);
+    }
+}

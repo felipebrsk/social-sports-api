@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Contracts\Repositories;
+
+use App\Models\$CLASS$;
+use App\Contracts\Repositories\AbstractRepositoryInterface;
+
+/**
+ * @extends AbstractRepositoryInterface<$CLASS$>
+ */
+interface $CLASS$RepositoryInterface extends AbstractRepositoryInterface
+{
+}
