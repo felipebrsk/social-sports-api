@@ -13,6 +13,13 @@ abstract class TestCase extends BaseTestCase
     use MockeryPHPUnitIntegration;
 
     /**
+     * The storage fake disk.
+     *
+     * @var string
+     */
+    public string $disk = 'fakeAws';
+
+    /**
      * Setup test environments.
      *
      * @return void
@@ -25,10 +32,7 @@ abstract class TestCase extends BaseTestCase
             Carbon::now(),
         );
 
-        /** @var string $filesystem */
-        $filesystem = config('filesystems.default');
-
-        Storage::fake($filesystem);
+        Storage::fake($this->disk);
     }
 
     /**

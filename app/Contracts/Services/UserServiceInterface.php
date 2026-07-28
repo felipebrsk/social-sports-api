@@ -3,7 +3,6 @@
 namespace App\Contracts\Services;
 
 use App\Models\User;
-use App\Contracts\Services\AbstractServiceInterface;
 
 /**
  * @extends AbstractServiceInterface<User>

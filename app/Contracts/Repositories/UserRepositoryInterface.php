@@ -3,7 +3,6 @@
 namespace App\Contracts\Repositories;
 
 use App\Models\User;
-use App\Contracts\Repositories\AbstractRepositoryInterface;
 
 /**
  * @extends AbstractRepositoryInterface<User>

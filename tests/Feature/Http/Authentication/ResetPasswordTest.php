@@ -70,7 +70,7 @@ class ResetPasswordTest extends BaseIntegrationTesting
         $this->mock(ResetPasswordRepositoryInterface::class, function (MockInterface $mock) use ($user, $invalidToken) {
             $mock
                 ->shouldReceive('exists')
-                ->with(Mockery::on(fn(User $arg) => $arg->id === $user->id), $invalidToken)
+                ->with(Mockery::on(fn (User $arg) => $arg->id === $user->id), $invalidToken)
                 ->once()
                 ->andReturnFalse();
         });
@@ -100,7 +100,7 @@ class ResetPasswordTest extends BaseIntegrationTesting
         $this->mock(ResetPasswordRepositoryInterface::class, function (MockInterface $mock) use ($user, $validToken) {
             $mock
                 ->shouldReceive('exists')
-                ->with(Mockery::on(fn(User $arg) => $arg->id === $user->id), $validToken)
+                ->with(Mockery::on(fn (User $arg) => $arg->id === $user->id), $validToken)
                 ->once()
                 ->andReturnTrue();
         });
@@ -157,13 +157,13 @@ class ResetPasswordTest extends BaseIntegrationTesting
         $this->mock(ResetPasswordRepositoryInterface::class, function (MockInterface $mock) use ($user, $validToken) {
             $mock
                 ->shouldReceive('exists')
-                ->with(Mockery::on(fn(User $arg) => $arg->id === $user->id), $validToken)
+                ->with(Mockery::on(fn (User $arg) => $arg->id === $user->id), $validToken)
                 ->once()
                 ->andReturnTrue();
 
             $mock
                 ->shouldReceive('delete')
-                ->with(Mockery::on(fn(User $arg) => $arg->id === $user->id))
+                ->with(Mockery::on(fn (User $arg) => $arg->id === $user->id))
                 ->once();
         });
 

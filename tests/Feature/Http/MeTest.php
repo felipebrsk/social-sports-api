@@ -2,10 +2,33 @@
 
 namespace Tests\Feature\Http;
 
+use App\Models\Profile;
+use Tests\Traits\Dummy\HasDummyProfile;
 use Tests\Feature\BaseIntegrationTesting;
 
 class MeTest extends BaseIntegrationTesting
 {
+    use HasDummyProfile;
+
+    /**
+     * The dummy user profile.
+     *
+     * @var Profile
+     */
+    private Profile $profile;
+
+    /**
+     * Setup new test environments.
+     *
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->profile = $this->createDummyProfileTo($this->user->id);
+    }
+
     /**
      * Get the route name.
      *
@@ -47,7 +70,7 @@ class MeTest extends BaseIntegrationTesting
      */
     public function test_if_can_get_correct_attributes_count(): void
     {
-        $this->getJson(route($this->getRouteName()))->assertOk()->assertJsonCount(5, 'data');
+        $this->getJson(route($this->getRouteName()))->assertOk()->assertJsonCount(6, 'data');
     }
 
     /**
@@ -64,6 +87,12 @@ class MeTest extends BaseIntegrationTesting
                 'email',
                 'created_at',
                 'updated_at',
+                'profile' => [
+                    'bio',
+                    'avatar',
+                    'whatsapp',
+                    'instagram',
+                ],
             ],
         ]);
     }
@@ -82,6 +111,12 @@ class MeTest extends BaseIntegrationTesting
                 'email' => $this->user->email,
                 'created_at' => $this->user->created_at?->toISOString(),
                 'updated_at' => $this->user->updated_at?->toISOString(),
+                'profile' => [
+                    'bio' => $this->profile->bio,
+                    'avatar' => $this->profile->avatar,
+                    'whatsapp' => $this->profile->whatsapp,
+                    'instagram' => $this->profile->instagram,
+                ],
             ],
         ]);
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1785167512">
-  <project timestamp="1785167512" name="Clover Coverage">
+<coverage generated="1785247840">
+  <project timestamp="1785247840" name="Clover Coverage">
     <package name="App\DTOs\Authentication">
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\DTOs\Authentication\EmailVerify.php">
         <class name="App\DTOs\Authentication\EmailVerify" namespace="App\DTOs\Authentication">
@@ -83,6 +83,25 @@
         <line num="34" type="stmt" count="5"/>
         <line num="35" type="stmt" count="5"/>
         <metrics loc="38" ncloc="23" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="8" coveredelements="8"/>
+      </file>
+    </package>
+    <package name="App\DTOs">
+      <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\DTOs\ProfileUpdate.php">
+        <class name="App\DTOs\ProfileUpdate" namespace="App\DTOs">
+          <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="11" coveredelements="11"/>
+        </class>
+        <line num="19" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+        <line num="27" type="stmt" count="10"/>
+        <line num="36" type="method" name="fromRequest" visibility="public" complexity="2" crap="2" count="6"/>
+        <line num="38" type="stmt" count="6"/>
+        <line num="40" type="stmt" count="6"/>
+        <line num="41" type="stmt" count="6"/>
+        <line num="42" type="stmt" count="6"/>
+        <line num="43" type="stmt" count="6"/>
+        <line num="44" type="stmt" count="6"/>
+        <line num="45" type="stmt" count="6"/>
+        <line num="46" type="stmt" count="6"/>
+        <metrics loc="49" ncloc="31" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="11" coveredelements="11"/>
       </file>
     </package>
     <package name="App\Events\Authentication">
@@ -286,14 +305,33 @@
       </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Http\Controllers\MeController.php">
         <class name="App\Http\Controllers\MeController" namespace="App\Http\Controllers">
-          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="8" coveredelements="8"/>
         </class>
         <line num="18" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
         <line num="22" type="stmt" count="5"/>
         <line num="31" type="method" name="__invoke" visibility="public" complexity="1" crap="1" count="5"/>
         <line num="33" type="stmt" count="5"/>
         <line num="35" type="stmt" count="5"/>
-        <metrics loc="38" ncloc="24" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+        <line num="36" type="stmt" count="5"/>
+        <line num="37" type="stmt" count="5"/>
+        <line num="39" type="stmt" count="5"/>
+        <metrics loc="42" ncloc="28" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="8" coveredelements="8"/>
+      </file>
+      <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Http\Controllers\ProfileController.php">
+        <class name="App\Http\Controllers\ProfileController" namespace="App\Http\Controllers">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+        </class>
+        <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
+        <line num="36" type="stmt" count="10"/>
+        <line num="46" type="method" name="__invoke" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="60" type="stmt" count="4"/>
+        <line num="63" type="stmt" count="4"/>
+        <line num="65" type="stmt" count="4"/>
+        <line num="67" type="stmt" count="4"/>
+        <line num="69" type="stmt" count="4"/>
+        <line num="70" type="stmt" count="4"/>
+        <line num="71" type="stmt" count="4"/>
+        <metrics loc="74" ncloc="56" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
       </file>
     </package>
     <package name="App\Http\Middleware">
@@ -301,9 +339,9 @@
         <class name="App\Http\Middleware\ForceJsonAccept" namespace="App\Http\Middleware">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
         </class>
-        <line num="16" type="method" name="handle" visibility="public" complexity="1" crap="1" count="42"/>
-        <line num="18" type="stmt" count="42"/>
-        <line num="20" type="stmt" count="42"/>
+        <line num="16" type="method" name="handle" visibility="public" complexity="1" crap="1" count="53"/>
+        <line num="18" type="stmt" count="53"/>
+        <line num="20" type="stmt" count="53"/>
         <metrics loc="23" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
       </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Http\Middleware\RestrictedDocsAccess.php">
@@ -402,13 +440,13 @@
         <class name="App\Http\Requests\BaseRequest" namespace="App\Http\Requests">
           <metrics complexity="10" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="25" coveredelements="25"/>
         </class>
-        <line num="23" type="method" name="authorize" visibility="public" complexity="1" crap="1" count="37"/>
-        <line num="25" type="stmt" count="37"/>
-        <line num="31" type="method" name="prepareForValidation" visibility="protected" complexity="1" crap="1" count="91"/>
-        <line num="33" type="stmt" count="91"/>
-        <line num="41" type="method" name="castBooleanFields" visibility="protected" complexity="8" crap="8" count="91"/>
-        <line num="43" type="stmt" count="91"/>
-        <line num="44" type="stmt" count="84"/>
+        <line num="23" type="method" name="authorize" visibility="public" complexity="1" crap="1" count="47"/>
+        <line num="25" type="stmt" count="47"/>
+        <line num="31" type="method" name="prepareForValidation" visibility="protected" complexity="1" crap="1" count="112"/>
+        <line num="33" type="stmt" count="112"/>
+        <line num="41" type="method" name="castBooleanFields" visibility="protected" complexity="8" crap="8" count="112"/>
+        <line num="43" type="stmt" count="112"/>
+        <line num="44" type="stmt" count="105"/>
         <line num="47" type="stmt" count="7"/>
         <line num="49" type="stmt" count="7"/>
         <line num="50" type="stmt" count="7"/>
@@ -430,10 +468,38 @@
         <metrics loc="79" ncloc="63" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="25" coveredelements="25"/>
       </file>
     </package>
+    <package name="App\Http\Requests\Profile">
+      <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Http\Requests\Profile\ProfileUpdateRequest.php">
+        <class name="App\Http\Requests\Profile\ProfileUpdateRequest" namespace="App\Http\Requests\Profile">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="7" coveredelements="7"/>
+        </class>
+        <line num="15" type="method" name="rules" visibility="public" complexity="1" crap="1" count="21"/>
+        <line num="17" type="stmt" count="21"/>
+        <line num="18" type="stmt" count="21"/>
+        <line num="19" type="stmt" count="21"/>
+        <line num="20" type="stmt" count="21"/>
+        <line num="21" type="stmt" count="21"/>
+        <line num="22" type="stmt" count="21"/>
+        <metrics loc="25" ncloc="20" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="7" coveredelements="7"/>
+      </file>
+    </package>
     <package name="App\Http\Resources">
+      <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Http\Resources\ProfileResource.php">
+        <class name="App\Http\Resources\ProfileResource" namespace="App\Http\Resources">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="7" coveredelements="7"/>
+        </class>
+        <line num="19" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="21" type="stmt" count="4"/>
+        <line num="22" type="stmt" count="4"/>
+        <line num="23" type="stmt" count="4"/>
+        <line num="24" type="stmt" count="4"/>
+        <line num="25" type="stmt" count="4"/>
+        <line num="26" type="stmt" count="4"/>
+        <metrics loc="29" ncloc="21" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="7" coveredelements="7"/>
+      </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Http\Resources\UserResource.php">
         <class name="App\Http\Resources\UserResource" namespace="App\Http\Resources">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="8" coveredelements="8"/>
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="9" coveredelements="9"/>
         </class>
         <line num="19" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="5"/>
         <line num="21" type="stmt" count="5"/>
@@ -443,7 +509,8 @@
         <line num="25" type="stmt" count="5"/>
         <line num="26" type="stmt" count="5"/>
         <line num="27" type="stmt" count="5"/>
-        <metrics loc="30" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="8" coveredelements="8"/>
+        <line num="28" type="stmt" count="5"/>
+        <metrics loc="31" ncloc="23" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="9" coveredelements="9"/>
       </file>
     </package>
     <package name="App\Listeners\Authentication">
@@ -451,14 +518,14 @@
         <class name="App\Listeners\Authentication\AuthenticationSubscriber" namespace="App\Listeners\Authentication">
           <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
         </class>
-        <line num="19" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="370"/>
-        <line num="22" type="stmt" count="370"/>
+        <line num="19" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="405"/>
+        <line num="22" type="stmt" count="405"/>
         <line num="30" type="method" name="handleUserLogin" visibility="public" complexity="1" crap="1" count="5"/>
         <line num="33" type="stmt" count="5"/>
-        <line num="40" type="method" name="subscribe" visibility="public" complexity="1" crap="1" count="370"/>
-        <line num="42" type="stmt" count="370"/>
-        <line num="43" type="stmt" count="370"/>
-        <line num="44" type="stmt" count="370"/>
+        <line num="40" type="method" name="subscribe" visibility="public" complexity="1" crap="1" count="405"/>
+        <line num="42" type="stmt" count="405"/>
+        <line num="43" type="stmt" count="405"/>
+        <line num="44" type="stmt" count="405"/>
         <metrics loc="47" ncloc="29" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
       </file>
     </package>
@@ -675,10 +742,10 @@
         <class name="App\Models\Profile" namespace="App\Models">
           <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
         </class>
-        <line num="28" type="method" name="casts" visibility="protected" complexity="1" crap="1" count="8"/>
-        <line num="30" type="stmt" count="8"/>
-        <line num="31" type="stmt" count="8"/>
-        <line num="32" type="stmt" count="8"/>
+        <line num="28" type="method" name="casts" visibility="protected" complexity="1" crap="1" count="24"/>
+        <line num="30" type="stmt" count="24"/>
+        <line num="31" type="stmt" count="24"/>
+        <line num="32" type="stmt" count="24"/>
         <line num="40" type="method" name="user" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="42" type="stmt" count="1"/>
         <metrics loc="45" ncloc="36" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
@@ -809,14 +876,14 @@
         <line num="70" type="stmt" count="2"/>
         <line num="78" type="method" name="sendEmailVerificationNotification" visibility="public" complexity="1" crap="1" count="3"/>
         <line num="80" type="stmt" count="3"/>
-        <line num="88" type="method" name="casts" visibility="protected" complexity="1" crap="1" count="65"/>
-        <line num="90" type="stmt" count="65"/>
-        <line num="91" type="stmt" count="65"/>
-        <line num="92" type="stmt" count="65"/>
-        <line num="93" type="stmt" count="65"/>
-        <line num="94" type="stmt" count="65"/>
-        <line num="102" type="method" name="profile" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="104" type="stmt" count="2"/>
+        <line num="88" type="method" name="casts" visibility="protected" complexity="1" crap="1" count="76"/>
+        <line num="90" type="stmt" count="76"/>
+        <line num="91" type="stmt" count="76"/>
+        <line num="92" type="stmt" count="76"/>
+        <line num="93" type="stmt" count="76"/>
+        <line num="94" type="stmt" count="76"/>
+        <line num="102" type="method" name="profile" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="104" type="stmt" count="7"/>
         <line num="112" type="method" name="requests" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="114" type="stmt" count="1"/>
         <line num="122" type="method" name="messages" visibility="public" complexity="1" crap="1" count="1"/>
@@ -935,20 +1002,21 @@
       </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Notifications\Authentication\QueuedVerifyEmail.php">
         <class name="App\Notifications\Authentication\QueuedVerifyEmail" namespace="App\Notifications\Authentication">
-          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="9" elements="11" coveredelements="9"/>
+          <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="10" elements="12" coveredelements="10"/>
         </class>
-        <line num="23" type="method" name="verificationUrl" visibility="protected" complexity="2" crap="2.00" count="1"/>
-        <line num="25" type="stmt" count="1"/>
-        <line num="26" type="stmt" count="0"/>
-        <line num="29" type="stmt" count="1"/>
-        <line num="30" type="stmt" count="1"/>
+        <line num="27" type="method" name="verificationUrl" visibility="protected" complexity="2" crap="2.00" count="1"/>
         <line num="31" type="stmt" count="1"/>
-        <line num="32" type="stmt" count="1"/>
-        <line num="33" type="stmt" count="1"/>
-        <line num="34" type="stmt" count="1"/>
-        <line num="35" type="stmt" count="1"/>
-        <line num="36" type="stmt" count="1"/>
-        <metrics loc="39" ncloc="36" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="9" elements="11" coveredelements="9"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <metrics loc="49" ncloc="40" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="10" elements="12" coveredelements="10"/>
       </file>
     </package>
     <package name="App\Repositories">
@@ -956,14 +1024,14 @@
         <class name="App\Repositories\AbstractRepository" namespace="App\Repositories">
           <metrics complexity="37" methods="33" coveredmethods="33" conditionals="0" coveredconditionals="0" statements="95" coveredstatements="95" elements="128" coveredelements="128"/>
         </class>
-        <line num="116" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="60"/>
-        <line num="118" type="stmt" count="60"/>
-        <line num="124" type="method" name="resetScope" visibility="public" complexity="1" crap="1" count="23"/>
-        <line num="126" type="stmt" count="23"/>
-        <line num="127" type="stmt" count="23"/>
-        <line num="128" type="stmt" count="23"/>
-        <line num="129" type="stmt" count="23"/>
-        <line num="131" type="stmt" count="23"/>
+        <line num="116" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="74"/>
+        <line num="118" type="stmt" count="74"/>
+        <line num="124" type="method" name="resetScope" visibility="public" complexity="1" crap="1" count="27"/>
+        <line num="126" type="stmt" count="27"/>
+        <line num="127" type="stmt" count="27"/>
+        <line num="128" type="stmt" count="27"/>
+        <line num="129" type="stmt" count="27"/>
+        <line num="131" type="stmt" count="27"/>
         <line num="137" type="method" name="withCriteria" visibility="public" complexity="1" crap="1" count="3"/>
         <line num="139" type="stmt" count="3"/>
         <line num="141" type="stmt" count="3"/>
@@ -973,28 +1041,28 @@
         <line num="157" type="method" name="withCount" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="159" type="stmt" count="1"/>
         <line num="161" type="stmt" count="1"/>
-        <line num="169" type="method" name="newQuery" visibility="protected" complexity="4" crap="4" count="23"/>
-        <line num="172" type="stmt" count="23"/>
-        <line num="174" type="stmt" count="23"/>
+        <line num="169" type="method" name="newQuery" visibility="protected" complexity="4" crap="4" count="27"/>
+        <line num="172" type="stmt" count="27"/>
+        <line num="174" type="stmt" count="27"/>
         <line num="175" type="stmt" count="1"/>
-        <line num="178" type="stmt" count="23"/>
-        <line num="179" type="stmt" count="2"/>
-        <line num="182" type="stmt" count="23"/>
+        <line num="178" type="stmt" count="27"/>
+        <line num="179" type="stmt" count="6"/>
+        <line num="182" type="stmt" count="27"/>
         <line num="183" type="stmt" count="1"/>
-        <line num="186" type="stmt" count="23"/>
+        <line num="186" type="stmt" count="27"/>
         <line num="196" type="method" name="__call" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="198" type="stmt" count="1"/>
         <line num="201" type="stmt" count="1"/>
         <line num="203" type="stmt" count="1"/>
         <line num="205" type="stmt" count="1"/>
-        <line num="211" type="method" name="select" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="213" type="stmt" count="2"/>
-        <line num="215" type="stmt" count="2"/>
-        <line num="223" type="method" name="applyCriteria" visibility="protected" complexity="2" crap="2" count="23"/>
-        <line num="225" type="stmt" count="23"/>
-        <line num="227" type="stmt" count="23"/>
+        <line num="211" type="method" name="select" visibility="public" complexity="1" crap="1" count="6"/>
+        <line num="213" type="stmt" count="6"/>
+        <line num="215" type="stmt" count="6"/>
+        <line num="223" type="method" name="applyCriteria" visibility="protected" complexity="2" crap="2" count="27"/>
+        <line num="225" type="stmt" count="27"/>
+        <line num="227" type="stmt" count="27"/>
         <line num="228" type="stmt" count="3"/>
-        <line num="231" type="stmt" count="23"/>
+        <line num="231" type="stmt" count="27"/>
         <line num="237" type="method" name="paginate" visibility="public" complexity="1" crap="1" count="2"/>
         <line num="239" type="stmt" count="2"/>
         <line num="241" type="stmt" count="2"/>
@@ -1021,10 +1089,10 @@
         <line num="293" type="stmt" count="1"/>
         <line num="294" type="stmt" count="1"/>
         <line num="296" type="stmt" count="1"/>
-        <line num="302" type="method" name="getAllowedFilters" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="304" type="stmt" count="2"/>
-        <line num="310" type="method" name="getAllowedSorts" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="312" type="stmt" count="2"/>
+        <line num="302" type="method" name="getAllowedFilters" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="304" type="stmt" count="3"/>
+        <line num="310" type="method" name="getAllowedSorts" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="312" type="stmt" count="3"/>
         <line num="318" type="method" name="getDefaultSortBy" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="320" type="stmt" count="1"/>
         <line num="326" type="method" name="getDefaultSortOrder" visibility="public" complexity="1" crap="1" count="1"/>
@@ -1066,10 +1134,10 @@
         <line num="451" type="stmt" count="2"/>
         <line num="453" type="stmt" count="2"/>
         <line num="455" type="stmt" count="2"/>
-        <line num="461" type="method" name="findOrFailBy" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="464" type="stmt" count="1"/>
-        <line num="466" type="stmt" count="1"/>
-        <line num="468" type="stmt" count="1"/>
+        <line num="461" type="method" name="findOrFailBy" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="464" type="stmt" count="5"/>
+        <line num="466" type="stmt" count="5"/>
+        <line num="468" type="stmt" count="5"/>
         <line num="474" type="method" name="update" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="477" type="stmt" count="1"/>
         <line num="478" type="stmt" count="1"/>
@@ -1086,6 +1154,14 @@
         <line num="516" type="stmt" count="1"/>
         <metrics loc="519" ncloc="320" classes="1" methods="33" coveredmethods="33" conditionals="0" coveredconditionals="0" statements="95" coveredstatements="95" elements="128" coveredelements="128"/>
       </file>
+      <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Repositories\ProfileRepository.php">
+        <class name="App\Repositories\ProfileRepository" namespace="App\Repositories">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="14"/>
+        <line num="32" type="stmt" count="14"/>
+        <metrics loc="35" ncloc="20" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Repositories\UserRepository.php">
         <class name="App\Repositories\UserRepository" namespace="App\Repositories">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
@@ -1100,15 +1176,15 @@
         <class name="App\Repositories\Authentication\AuthContextRepository" namespace="App\Repositories\Authentication">
           <metrics complexity="5" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="9" coveredelements="9"/>
         </class>
-        <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
-        <line num="21" type="stmt" count="10"/>
-        <line num="26" type="method" name="id" visibility="public" complexity="2" crap="2" count="2"/>
-        <line num="28" type="stmt" count="2"/>
-        <line num="30" type="stmt" count="2"/>
+        <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="20"/>
+        <line num="21" type="stmt" count="20"/>
+        <line num="26" type="method" name="id" visibility="public" complexity="2" crap="2" count="6"/>
+        <line num="28" type="stmt" count="6"/>
+        <line num="30" type="stmt" count="6"/>
         <line num="36" type="method" name="user" visibility="public" complexity="1" crap="1" count="7"/>
         <line num="39" type="stmt" count="7"/>
-        <line num="45" type="method" name="check" visibility="public" complexity="1" crap="1" count="6"/>
-        <line num="47" type="stmt" count="6"/>
+        <line num="45" type="method" name="check" visibility="public" complexity="1" crap="1" count="10"/>
+        <line num="47" type="stmt" count="10"/>
         <metrics loc="50" ncloc="33" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="9" coveredelements="9"/>
       </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Repositories\Authentication\AuthRepository.php">
@@ -1149,8 +1225,8 @@
         <class name="App\Services\AbstractService" namespace="App\Services">
           <metrics complexity="19" methods="19" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="38" coveredelements="38"/>
         </class>
-        <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="55"/>
-        <line num="36" type="stmt" count="55"/>
+        <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="69"/>
+        <line num="36" type="stmt" count="69"/>
         <line num="42" type="method" name="paginateWithFilters" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="44" type="stmt" count="1"/>
         <line num="50" type="method" name="allWithFilters" visibility="public" complexity="1" crap="1" count="1"/>
@@ -1199,28 +1275,58 @@
         <line num="26" type="stmt" count="7"/>
         <metrics loc="29" ncloc="20" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
       </file>
+      <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Services\ProfileService.php">
+        <class name="App\Services\ProfileService" namespace="App\Services">
+          <metrics complexity="4" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="24" coveredelements="24"/>
+        </class>
+        <line num="29" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="14"/>
+        <line num="33" type="stmt" count="14"/>
+        <line num="39" type="method" name="updateByUserId" visibility="public" complexity="3" crap="3" count="7"/>
+        <line num="41" type="stmt" count="7"/>
+        <line num="42" type="stmt" count="7"/>
+        <line num="43" type="stmt" count="7"/>
+        <line num="44" type="stmt" count="7"/>
+        <line num="46" type="stmt" count="7"/>
+        <line num="47" type="stmt" count="7"/>
+        <line num="48" type="stmt" count="3"/>
+        <line num="49" type="stmt" count="3"/>
+        <line num="51" type="stmt" count="3"/>
+        <line num="52" type="stmt" count="3"/>
+        <line num="53" type="stmt" count="3"/>
+        <line num="54" type="stmt" count="3"/>
+        <line num="55" type="stmt" count="3"/>
+        <line num="56" type="stmt" count="3"/>
+        <line num="59" type="stmt" count="7"/>
+        <line num="60" type="stmt" count="7"/>
+        <line num="61" type="stmt" count="7"/>
+        <line num="62" type="stmt" count="7"/>
+        <line num="63" type="stmt" count="7"/>
+        <line num="64" type="stmt" count="7"/>
+        <line num="66" type="stmt" count="7"/>
+        <metrics loc="69" ncloc="56" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="24" coveredelements="24"/>
+      </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Services\ResponseService.php">
         <class name="App\Services\ResponseService" namespace="App\Services">
           <metrics complexity="10" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="28" coveredelements="28"/>
         </class>
-        <line num="31" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="44"/>
-        <line num="33" type="stmt" count="44"/>
-        <line num="39" type="method" name="toJson" visibility="public" complexity="3" crap="3" count="38"/>
-        <line num="41" type="stmt" count="38"/>
-        <line num="42" type="stmt" count="4"/>
-        <line num="45" type="stmt" count="34"/>
-        <line num="46" type="stmt" count="29"/>
+        <line num="31" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="55"/>
+        <line num="33" type="stmt" count="55"/>
+        <line num="39" type="method" name="toJson" visibility="public" complexity="3" crap="3" count="49"/>
+        <line num="41" type="stmt" count="49"/>
+        <line num="42" type="stmt" count="8"/>
+        <line num="45" type="stmt" count="41"/>
+        <line num="46" type="stmt" count="36"/>
         <line num="49" type="stmt" count="5"/>
-        <line num="55" type="method" name="setMessage" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="57" type="stmt" count="4"/>
-        <line num="59" type="stmt" count="4"/>
-        <line num="65" type="method" name="setContent" visibility="public" complexity="1" crap="1" count="38"/>
-        <line num="67" type="stmt" count="38"/>
-        <line num="69" type="stmt" count="38"/>
-        <line num="75" type="method" name="toMessage" visibility="public" complexity="1" crap="1" count="5"/>
-        <line num="77" type="stmt" count="5"/>
-        <line num="78" type="stmt" count="5"/>
-        <line num="79" type="stmt" count="5"/>
+        <line num="55" type="method" name="setMessage" visibility="public" complexity="1" crap="1" count="8"/>
+        <line num="57" type="stmt" count="8"/>
+        <line num="59" type="stmt" count="8"/>
+        <line num="65" type="method" name="setContent" visibility="public" complexity="1" crap="1" count="45"/>
+        <line num="67" type="stmt" count="45"/>
+        <line num="69" type="stmt" count="45"/>
+        <line num="75" type="method" name="toMessage" visibility="public" complexity="1" crap="1" count="9"/>
+        <line num="77" type="stmt" count="9"/>
+        <line num="78" type="stmt" count="9"/>
+        <line num="79" type="stmt" count="9"/>
         <line num="85" type="method" name="toArray" visibility="public" complexity="2" crap="2" count="7"/>
         <line num="87" type="stmt" count="7"/>
         <line num="89" type="stmt" count="7"/>
@@ -1228,10 +1334,47 @@
         <line num="93" type="stmt" count="7"/>
         <line num="94" type="stmt" count="7"/>
         <line num="95" type="stmt" count="7"/>
-        <line num="101" type="method" name="unwrap" visibility="public" complexity="1" crap="1" count="29"/>
-        <line num="103" type="stmt" count="29"/>
-        <line num="105" type="stmt" count="29"/>
+        <line num="101" type="method" name="unwrap" visibility="public" complexity="1" crap="1" count="36"/>
+        <line num="103" type="stmt" count="36"/>
+        <line num="105" type="stmt" count="36"/>
         <metrics loc="108" ncloc="76" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="28" coveredelements="28"/>
+      </file>
+      <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Services\StorageService.php">
+        <class name="App\Services\StorageService" namespace="App\Services">
+          <metrics complexity="13" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="31" coveredelements="31"/>
+        </class>
+        <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="23"/>
+        <line num="21" type="stmt" count="23"/>
+        <line num="26" type="method" name="store" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="2"/>
+        <line num="41" type="method" name="storeContentAs" visibility="public" complexity="2" crap="2" count="4"/>
+        <line num="47" type="stmt" count="4"/>
+        <line num="48" type="stmt" count="2"/>
+        <line num="51" type="stmt" count="4"/>
+        <line num="52" type="stmt" count="4"/>
+        <line num="54" type="stmt" count="4"/>
+        <line num="55" type="stmt" count="4"/>
+        <line num="56" type="stmt" count="4"/>
+        <line num="57" type="stmt" count="4"/>
+        <line num="58" type="stmt" count="4"/>
+        <line num="60" type="stmt" count="4"/>
+        <line num="66" type="method" name="delete" visibility="public" complexity="3" crap="3" count="5"/>
+        <line num="68" type="stmt" count="5"/>
+        <line num="69" type="stmt" count="4"/>
+        <line num="76" type="method" name="getUrl" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="78" type="stmt" count="2"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="82" type="stmt" count="1"/>
+        <line num="88" type="method" name="exists" visibility="public" complexity="2" crap="2" count="3"/>
+        <line num="90" type="stmt" count="3"/>
+        <line num="91" type="stmt" count="1"/>
+        <line num="94" type="stmt" count="2"/>
+        <line num="100" type="method" name="getDisk" visibility="public" complexity="1" crap="1" count="13"/>
+        <line num="103" type="stmt" count="13"/>
+        <line num="105" type="stmt" count="13"/>
+        <metrics loc="108" ncloc="82" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="31" coveredelements="31"/>
       </file>
       <file name="C:\Users\felip\Documents\Projects\social-sports-api\app\Services\UserService.php">
         <class name="App\Services\UserService" namespace="App\Services">
@@ -1247,18 +1390,18 @@
         <class name="App\Services\Authentication\AuthContextService" namespace="App\Services\Authentication">
           <metrics complexity="6" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="13" coveredelements="13"/>
         </class>
-        <line num="18" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="12"/>
-        <line num="22" type="stmt" count="12"/>
-        <line num="27" type="method" name="id" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="29" type="stmt" count="2"/>
-        <line num="32" type="stmt" count="1"/>
+        <line num="18" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="22"/>
+        <line num="22" type="stmt" count="22"/>
+        <line num="27" type="method" name="id" visibility="public" complexity="1" crap="1" count="6"/>
+        <line num="29" type="stmt" count="6"/>
+        <line num="32" type="stmt" count="5"/>
         <line num="38" type="method" name="user" visibility="public" complexity="1" crap="1" count="7"/>
         <line num="40" type="stmt" count="7"/>
         <line num="43" type="stmt" count="6"/>
-        <line num="49" type="method" name="check" visibility="public" complexity="1" crap="1" count="12"/>
-        <line num="51" type="stmt" count="12"/>
-        <line num="57" type="method" name="assertAuthenticated" visibility="public" complexity="2" crap="2" count="10"/>
-        <line num="59" type="stmt" count="10"/>
+        <line num="49" type="method" name="check" visibility="public" complexity="1" crap="1" count="16"/>
+        <line num="51" type="stmt" count="16"/>
+        <line num="57" type="method" name="assertAuthenticated" visibility="public" complexity="2" crap="2" count="14"/>
+        <line num="59" type="stmt" count="14"/>
         <line num="60" type="stmt" count="2"/>
         <metrics loc="64" ncloc="43" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="13" coveredelements="13"/>
       </file>
@@ -1409,6 +1552,6 @@
         <metrics loc="191" ncloc="114" classes="1" methods="8" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="32" elements="44" coveredelements="37"/>
       </file>
     </package>
-    <metrics files="79" loc="4843" ncloc="3404" classes="77" methods="257" coveredmethods="250" conditionals="0" coveredconditionals="0" statements="643" coveredstatements="629" elements="900" coveredelements="879"/>
+    <metrics files="86" loc="5247" ncloc="3699" classes="84" methods="273" coveredmethods="266" conditionals="0" coveredconditionals="0" statements="724" coveredstatements="710" elements="997" coveredelements="976"/>
   </project>
 </coverage>

@@ -17,7 +17,7 @@ interface EmailVerifyServiceInterface
      * @throws UserEmailAlreadyVerifiedException
      */
     public function resend(): void;
-    
+
     /**
      * Mark the authenticated user's email address as verified.
      *

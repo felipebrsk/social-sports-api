@@ -26,7 +26,7 @@ trait HasSlug
      * Intelephense / PHPStan requirements.
      * These abstract methods ensure static analyzers know the underlying Model methods exist
      * without creating signature conflicts with Eloquent's base Model.
-     * 
+     *
      * @param string $key
      * @return mixed
      */

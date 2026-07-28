@@ -135,7 +135,7 @@ class RegisterTest extends BaseIntegrationTesting
                 'password' => 'O campo senha \u00e9 obrigat\u00f3rio.',
             ],
         ];
-        
+
         yield 'invalid data types' => [
             'payload' => [
                 'name' => 123,

@@ -235,7 +235,7 @@ class AuthenticationServiceTest extends TestCase
         );
 
         $result = $this->authenticationService->login($dto);
-        
+
         Event::assertDispatched(LoginSuccessful::class, fn (LoginSuccessful $event) => $event->user === $user);
 
         $this->assertEquals($expected, $result);

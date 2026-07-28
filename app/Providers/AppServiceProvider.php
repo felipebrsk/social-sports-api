@@ -42,6 +42,10 @@ class AppServiceProvider extends ServiceProvider
         $this->configurePasswordPattern();
         $this->configurePasswordResetUrl();
         $this->prohibitDestructiveCommands();
+
+        // $this->app->when(ProfileService::class)
+        //     ->needs(StorageServiceInterface::class)
+        //     ->give(fn () => new LaravelStorageService('s3'));
     }
 
     /**

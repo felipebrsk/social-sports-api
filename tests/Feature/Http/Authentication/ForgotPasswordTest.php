@@ -82,7 +82,7 @@ class ForgotPasswordTest extends BaseIntegrationTesting
         $this->mock(ResetPasswordRepositoryInterface::class, function (MockInterface $mock) {
             $mock
                 ->shouldReceive('recentlyCreatedToken')
-                ->with(Mockery::on(fn(User $arg) => $arg->id === $this->user->id))
+                ->with(Mockery::on(fn (User $arg) => $arg->id === $this->user->id))
                 ->once()
                 ->andReturnTrue();
         });

@@ -25,10 +25,10 @@
   - [x] Disparo automático de e-mail com link assinado para verificação (`MustVerifyEmail`).
   - [x] Criação do registro padrão em `profiles`.
   - [x] Endpoint `POST /authentication/register` (`authentication.register`).
-- [ ] **1.7. Gestão do Perfil Pessoal (`ProfileController`)**
-  - [ ] Resource `ProfileResource`, DTO `UpdateProfile`.
-  - [ ] Endpoint `GET /profile` (`profile.show`): Dados do perfil + redes sociais.
-  - [ ] Endpoint `PUT /profile` (`profile.update`): Atualizar bio, foto e WhatsApp.
+- [x] **1.7. Gestão do Perfil Pessoal (`ProfileController`)**
+  - [x] Resource `ProfileResource`, DTO `UpdateProfile`, Request `ProfileUpdateRequest`.
+  - [x] Adicionar ao Endpoint `GET /me` (`user.me`): Dados do perfil + redes sociais.
+  - [x] Endpoint `PUT /profiles` (`profiles.update`): Atualizar bio, foto, WhatsApp e Instagram.
 
 ---
 

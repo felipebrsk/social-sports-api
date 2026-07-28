@@ -18,7 +18,10 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'bio' => fake()->sentence(),
+            'instagram' => fake()->url(),
+            'avatar' => fake()->imageUrl(),
+            'whatsapp' => fake()->phoneNumber(),
         ];
     }
 }

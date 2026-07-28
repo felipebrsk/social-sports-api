@@ -32,6 +32,10 @@ class MeController extends Controller
     {
         $user = $this->authContextService->user();
 
+        $user->loadMissing([
+            'profile:id,bio,avatar,whatsapp,instagram,user_id',
+        ]);
+
         return UserResource::make($user);
     }
 }
