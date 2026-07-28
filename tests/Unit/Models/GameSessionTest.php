@@ -51,6 +51,7 @@ class GameSessionTest extends BaseModelTesting implements
             'skill_level_id',
             'visitor_team_id',
             'game_session_status_id',
+            'external_players_count',
         ];
 
         $this->assertHasFillables($fillable);
@@ -73,6 +74,7 @@ class GameSessionTest extends BaseModelTesting implements
             'skill_level_id' => 'int',
             'visitor_team_id' => 'int',
             'start_time' => 'datetime',
+            'external_players_count' => 'int',
             'game_session_status_id' => 'int',
         ];
 

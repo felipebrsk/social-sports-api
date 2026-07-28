@@ -18,7 +18,14 @@ class VenueFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'city' => fake()->city(),
+            'verified' => fake()->boolean(),
+            'latitude' => fake()->latitude(),
+            'neighborhood' => fake()->word(),
+            'longitude' => fake()->longitude(),
+            'address' => fake()->streetAddress(),
+            'state' => fake()->randomElement(['BA', 'MG', 'SP', 'RJ']),
         ];
     }
 }

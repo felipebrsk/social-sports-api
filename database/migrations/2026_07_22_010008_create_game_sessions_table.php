@@ -17,6 +17,7 @@ return new class () extends Migration {
             $table->text('description')->nullable();
             $table->timestamp('end_time')->nullable();
             $table->boolean('featured')->default(false);
+            $table->unsignedInteger('external_players_count')->default(0);
             $table->foreignId('venue_id')->constrained();
             $table->foreignId('sport_id')->constrained();
             $table->foreignId('game_session_status_id')->constrained();

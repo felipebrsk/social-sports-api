@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\{
     'host_team_id',
     'skill_level_id',
     'visitor_team_id',
+    'external_players_count',
     'game_session_status_id',
 ])]
 class GameSession extends Model
@@ -49,6 +50,7 @@ class GameSession extends Model
             'skill_level_id' => 'int',
             'visitor_team_id' => 'int',
             'start_time' => 'datetime',
+            'external_players_count' => 'int',
             'game_session_status_id' => 'int',
         ];
     }

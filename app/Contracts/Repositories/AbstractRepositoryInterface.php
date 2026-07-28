@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Repositories;
 
+use Closure;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\{
     Model,
@@ -44,7 +45,7 @@ interface AbstractRepositoryInterface extends FilterableRepositoryInterface
     /**
      * Set the counts to eager load.
      *
-     * @param array<string> $relations
+     * @param array<int|string, (Closure)|string> $relations
      * @return static
      */
     public function withCount(array $relations): static;

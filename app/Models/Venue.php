@@ -15,10 +15,13 @@ use Illuminate\Database\Eloquent\Relations\{
 
 #[Fillable([
     'name',
+    'city',
+    'state',
     'address',
     'latitude',
     'verified',
     'longitude',
+    'neighborhood',
 ])]
 class Venue extends Model
 {

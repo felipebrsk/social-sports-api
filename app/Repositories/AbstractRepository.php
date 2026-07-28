@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Closure;
 use App\Contracts\Filters\CriterionFilterInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use App\Contracts\Repositories\AbstractRepositoryInterface;
@@ -47,7 +48,7 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
     /**
      * The relation counts to eager load.
      *
-     * @var array<string>
+     * @var array<int|string, (Closure)|string>
      */
     protected array $withCount = [];
 

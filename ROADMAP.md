@@ -16,9 +16,9 @@
   - [x] `UserResource` e `AuthContextServiceInterface`.
   - [x] Endpoint `GET /me` (`user.me`).
 - [x] **1.5. Verificação de E-mail (`EmailVerification`)**
-  - [x] `VerificationController` - `verify`: Processa a validação da URL assinada enviada por e-mail (`email_verified_at`).
+  - [x] `VerificationController` - `verify`: Validação da URL assinada (`email_verified_at`).
     - [x] Endpoint `GET /authentication/email/verify/{id}/{hash}` (`authentication.email.verify`).
-  - [x] `VerificationController` - `resend`: Reenvia a notificação de verificação de e-mail caso o usuário solicite.
+  - [x] `VerificationController` - `resend`: Reenvio de e-mail de verificação.
     - [x] Endpoint `POST /authentication/email/resend` (`authentication.email.resend`).
 - [x] **1.6. Cadastro de Usuário (`RegisterController`)**
   - [x] Request `RegisterRequest`, DTO `RegisterUser` e Service `RegisterUserService`.
@@ -32,91 +32,80 @@
 
 ---
 
-## 📌 Fase 2: Serviços de Apoio e Cadastros Base
-> **Objetivo:** Implementar tabelas de referência e gestão de quadras/esportes.
+## 📌 Fase 2: Área do Usuário / App (Público & Jogadores)
+> **Objetivo:** Consultas, agendamentos, interações e solicitações do atleta.
 
-- [ ] **2.1. Módulo de Esportes (`Sport`)**
-  - [ ] `ListSportsController` (`GET /sports` -> `sports.index`)
-  - [ ] `CreateSportController` (`POST /sports` -> `sports.store` - Admin)
-  - [ ] `UpdateSportController` (`PUT /sports/{sport}` -> `sports.update` - Admin)
-  - [ ] `DeleteSportController` (`DELETE /sports/{sport}` -> `sports.destroy` - Admin)
-- [ ] **2.2. Módulo de Quadras / Locais (`Venue`)**
-  - [ ] `CreateVenueController` (`POST /venues` -> `venues.store`): Cadastro com Lat/Long e vínculo inicial em `venue_managers`.
-  - [ ] `ListVenuesController` (`GET /venues` -> `venues.index`): Busca com cálculo de distância (Haversine) por raio em KM.
-  - [ ] `ShowVenueController` (`GET /venues/{venue}` -> `venues.show`): Detalhes da quadra e esportes suportados.
-  - [ ] `UpdateVenueController` (`PUT /venues/{venue}` -> `venues.update`): Edição restrita aos gestores da quadra (`venue_managers`).
-- [ ] **2.3. Módulo de Times / Equipes (`Team`) - *Opcional no MVP***
-  - [ ] `CreateTeamController` (`POST /teams` -> `teams.store`): Define `leader_id`.
-  - [ ] `AddTeamMemberController` (`POST /teams/{team}/members` -> `teams.members.store`).
-
----
-
-## 📌 Fase 3: O Coração do App - Sessões de Jogo (`GameSession`)
-> **Objetivo:** Agendamento de partidas com validações de horário e filtros geoespaciais.
-
-- [ ] **3.1. Criação de Partidas com Validação de Conflito**
-  - [ ] Service `GameSessionService` com verificação de sobreposição de horários (`start_time` / `end_time` no mesmo `venue_id`).
-  - [ ] Tratar flag `force_create = true` em DTO caso o usuário aceite criar com conflito.
-  - [ ] `CreateGameSessionController` (`POST /game-sessions` -> `game-sessions.store`).
-- [ ] **3.2. Feed Principal e Detalhes da Partida**
-  - [ ] `ListGameSessionsController` (`GET /game-sessions` -> `game-sessions.index`): Filtros por esporte, nível (`skill_level_id`), data e proximidade por GPS.
-  - [ ] `ShowGameSessionController` (`GET /game-sessions/{gameSession}` -> `game-sessions.show`): Retorna organizador, quadra, participantes aprovados e links externos.
-- [ ] **3.3. Cancelamento e Edição**
-  - [ ] `UpdateGameSessionController` (`PUT /game-sessions/{gameSession}` -> `game-sessions.update`).
-  - [ ] `CancelGameSessionController` (`PATCH /game-sessions/{gameSession}/cancel` -> `game-sessions.cancel`).
-
----
-
-## 📌 Fase 4: Solicitações de Entrada e Vagas (`GameSessionRequest`)
-> **Objetivo:** Fluxo de participação em partidas, aprovações e recusas.
-
-- [ ] **4.1. Solicitação de Vaga pelo Jogador**
-  - [ ] `CreateGameSessionRequestController` (`POST /game-sessions/{gameSession}/requests` -> `game-sessions.requests.store`).
-  - [ ] Validações: partida aberta, usuário sem solicitação prévia e limites de vagas.
-- [ ] **4.2. Gestão de Solicitações (Criador do Jogo)**
-  - [ ] `ListGameSessionRequestsController` (`GET /game-sessions/{gameSession}/requests` -> `game-sessions.requests.index`).
-  - [ ] `ApproveGameSessionRequestController` (`PATCH /requests/{request}/approve` -> `requests.approve`):
-    - [ ] Atualiza status para `approved`.
-    - [ ] Atualiza `game_sessions` para `full` se `max_players` for atingido.
-    - [ ] Adiciona o usuário em `conversation_users` do bate-papo da partida.
-  - [ ] `RejectGameSessionRequestController` (`PATCH /requests/{request}/reject` -> `requests.reject`):
-    - [ ] Exige o campo `rejection_reason` na Request.
-- [ ] **4.3. Minhas Solicitações**
-  - [ ] `ListMyRequestsController` (`GET /my-requests` -> `requests.my-requests`).
-
----
-
-## 📌 Fase 5: Comunicação e Mídias (`Conversations` e `SocialLinks`)
-> **Objetivo:** Chat em grupo das partidas e anexação de links externos (WhatsApp/Instagram).
-
-- [ ] **5.1. Bate-Papo Interno**
-  - [ ] Criação automática da `Conversation` (`conversation_type_id` = Grupo do Jogo) ao criar uma `GameSession`.
+- [x] **2.1. Consulta de Esportes (`Sport`)**
+  - [x] `ListSportsController` (`GET /sports` -> `sports.index`): Lista simples de esportes para filtros e navegação.
+- [ ] **2.2. Consulta e Busca de Quadras (`Venue`)**
+  - [ ] `ListVenuesController` (`GET /venues` -> `venues.index`): Busca com filtros por `sport_id`, GPS (Haversine) ou Cidade/Estado.
+  - [ ] `ShowVenueController` (`GET /venues/{venue}` -> `venues.show`): Detalhes da quadra, endereço, fotos e esportes aceitos.
+- [ ] **2.3. Sessões de Jogo (`GameSession`)**
+  - [ ] `CreateGameSessionController` (`POST /game-sessions` -> `game-sessions.store`): Criar jogo com verificação de sobreposição de horários na mesma quadra. Tratar flag `force_create`.
+  - [ ] `ListGameSessionsController` (`GET /game-sessions` -> `game-sessions.index`): Feed principal por esporte, data, nível de habilidade e proximidade.
+  - [ ] `ShowGameSessionController` (`GET /game-sessions/{gameSession}` -> `game-sessions.show`): Retorna organizador, quadra, lista de participantes e links do grupo de WhatsApp.
+  - [ ] `UpdateGameSessionController` (`PUT /game-sessions/{gameSession}` -> `game-sessions.update` - Organizador).
+  - [ ] `CancelGameSessionController` (`PATCH /game-sessions/{gameSession}/cancel` -> `game-sessions.cancel` - Organizador).
+- [ ] **2.4. Participação e Vagas (`GameSessionRequest`)**
+  - [ ] `CreateGameSessionRequestController` (`POST /game-sessions/{gameSession}/requests` -> `game-sessions.requests.store`): Pedir para entrar no jogo.
+  - [ ] `ListGameSessionRequestsController` (`GET /game-sessions/{gameSession}/requests` -> `game-sessions.requests.index` - Organizador).
+  - [ ] `ApproveGameSessionRequestController` (`PATCH /requests/{request}/approve` -> `requests.approve` - Organizador): Aprova atleta, atualiza vagas e adiciona no chat.
+  - [ ] `RejectGameSessionRequestController` (`PATCH /requests/{request}/reject` -> `requests.reject` - Organizador): Exige `rejection_reason`.
+  - [ ] `ListMyRequestsController` (`GET /my-requests` -> `requests.my-requests`): Acompanhar status dos meus pedidos.
+- [ ] **2.5. Bate-Papo & Mídias (`Conversations` e `SocialLinks`)**
   - [ ] `ListConversationsController` (`GET /conversations` -> `conversations.index`).
   - [ ] `ListMessagesController` (`GET /conversations/{conversation}/messages` -> `conversations.messages.index`).
   - [ ] `SendMessageController` (`POST /conversations/{conversation}/messages` -> `conversations.messages.store`).
-- [ ] **5.2. Links e Redes Sociais Polimórficas**
-  - [ ] `CreateSocialLinkController` (`POST /social-links` -> `social-links.store`): Anexar link do grupo do WhatsApp à partida ou Instagram à quadra/perfil.
+  - [ ] `CreateSocialLinkController` (`POST /social-links` -> `social-links.store`): Anexar link do grupo do WhatsApp à partida ou Instagram.
+- [ ] **2.6. Central de Atendimento e Solicitação de Esportes (`Feedback`)**
+  - [ ] `CreateFeedbackController` (`POST /feedbacks` -> `feedbacks.store`): Enviar chamado para:
+    - [ ] *Solicitar novo esporte* (`category_id` = request_sport).
+    - [ ] *Sugestões, reclamações gerais ou reporte de bugs*.
+  - [ ] `ListMyFeedbacksController` (`GET /my-feedbacks` -> `feedbacks.my-feedbacks`): Jogador acompanha o andamento do suporte.
 
 ---
 
-## 📌 Fase 6: Monetização via Pix (Destaque de Jogos)
-> **Objetivo:** Cobrança simbólica para destaque no topo das buscas da cidade.
+## 📌 Fase 3: Gestão de Quadras (Donos & Comunidade)
+> **Objetivo:** Cadastro com geolocalização nativa e gestão por donos/gerentes (`venue_managers`).
 
-- [ ] **6.1. Geração de Cobrança Pix**
-  - [ ] `CreateFeaturedMatchPaymentController` (`POST /game-sessions/{gameSession}/feature` -> `payments.feature`).
+- [ ] **3.1. Cadastro e Gestão de Arenas (`Venue`)**
+  - [ ] `CreateVenueController` (`POST /venues` -> `venues.store`): 
+    - Qualquer usuário ou dono cadastra uma quadra marcando o pino exato no mapa (salvando `latitude` e `longitude`).
+    - Salva a quadra como não verificada (`verified = false`) e vincula o criador em `venue_managers`.
+  - [ ] `UpdateVenueController` (`PUT /venues/{venue}` -> `venues.update`): Atualizar informações, fotos e esportes suportados (Apenas Gestores/Admin).
+  - [ ] `ListMyVenuesController` (`GET /my-venues` -> `venues.my-venues`): Listar quadras que o usuário gerencia.
+
+---
+
+## 📌 Fase 4: Área Administrativa (Backoffice / Painel Admin)
+> **Objetivo:** Gestão global, moderação de quadras e aprovação de solicitações (`/admin`).
+
+- [ ] **4.1. Gestão Geral de Esportes (`Admin\Sport`)**
+  - [ ] `Admin\ListSportsController` (`GET /admin/sports` -> `admin.sports.index`): Lista completa para o painel com estatísticas/counts.
+  - [ ] `Admin\CreateSportController` (`POST /admin/sports` -> `admin.sports.store`).
+  - [ ] `Admin\UpdateSportController` (`PUT /admin/sports/{sport}` -> `admin.sports.update`).
+  - [ ] `Admin\DeleteSportController` (`DELETE /admin/sports/{sport}` -> `admin.sports.destroy`).
+- [ ] **4.2. Moderação e Verificação de Quadras (`Admin\Venue`)**
+  - [ ] `Admin\ListVenuesController` (`GET /admin/venues` -> `admin.venues.index`): Filtro por quadras pendentes (`verified = false`).
+  - [ ] `Admin\VerifyVenueController` (`PATCH /admin/venues/{venue}/verify` -> `admin.venues.verify`): Concede o selo de quadra oficial/parceira.
+  - [ ] `Admin\DeleteVenueController` (`DELETE /admin/venues/{venue}` -> `admin.venues.destroy`).
+- [ ] **4.3. Moderação de Usuários (`Admin\User`)**
+  - [ ] `Admin\ListUsersController` (`GET /admin/users` -> `admin.users.index`).
+  - [ ] `Admin\ToggleBlockUserController` (`PATCH /admin/users/{user}/block` -> `admin.users.block`).
+- [ ] **4.4. Atendimento de Chamados e Solicitação de Esportes (`Admin\Feedback`)**
+  - [ ] `Admin\ListFeedbacksController` (`GET /admin/feedbacks` -> `admin.feedbacks.index`).
+  - [ ] `Admin\ShowFeedbackController` (`GET /admin/feedbacks/{feedback}` -> `admin.feedbacks.show`).
+  - [ ] `Admin\UpdateFeedbackController` (`PATCH /admin/feedbacks/{feedback}` -> `admin.feedbacks.update`):
+    - [ ] Atualizar status para `resolved` ou `rejected` e responder no `admin_notes`.
+    - [ ] *Fluxo do Esporte:* Se aceitar a solicitação de novo esporte, o Admin executa o `Admin\CreateSportController` e conclui o chamado.
+
+---
+
+## 📌 Fase 5: Monetização via Pix (Destaque de Jogos)
+> **Objetivo:** Infraestrutura financeira simples para manutenção do servidor.
+
+- [ ] **5.1. Cobrança e Gateway**
+  - [ ] `CreateFeaturedMatchPaymentController` (`POST /game-sessions/{gameSession}/feature` -> `payments.feature`): Gera QR Code do Pix para destacar o jogo no topo da cidade.
   - [ ] Service de integração com Gateway (Mercado Pago / Asaas).
-- [ ] **6.2. Processamento Assíncrono (Webhook)**
-  - [ ] `PaymentWebhookController` (`POST /webhooks/payments/{gateway}` -> `webhooks.payments`).
-  - [ ] Atualizar `payment_statuses` para `paid` e marcar `game_sessions.is_featured = true`.
-
----
-
-## 📌 Fase 7: Central de Atendimento, Sugestões e Feedbacks (`Feedback`)
-> **Objetivo:** Receber solicitações de novos esportes, quadras ou relatos de erros.
-
-- [ ] **7.1. Canal do Usuário**
-  - [ ] `CreateFeedbackController` (`POST /feedbacks` -> `feedbacks.store`).
-  - [ ] `ListMyFeedbacksController` (`GET /my-feedbacks` -> `feedbacks.my-feedbacks`).
-- [ ] **7.2. Painel de Atendimento (Admin)**
-  - [ ] `ListAdminFeedbacksController` (`GET /admin/feedbacks` -> `admin.feedbacks.index`).
-  - [ ] `UpdateAdminFeedbackController` (`PATCH /admin/feedbacks/{feedback}` -> `admin.feedbacks.update`).
+- [ ] **5.2. Processamento de Webhooks**
+  - [ ] `PaymentWebhookController` (`POST /webhooks/payments/{gateway}` -> `webhooks.payments`): Confirma pagamento e atualiza `game_sessions.is_featured = true`.

@@ -13,11 +13,17 @@ return new class () extends Migration {
         Schema::create('venues', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('city');
             $table->string('address');
+            $table->string('state', 2);
+            $table->string('neighborhood')->nullable();
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->boolean('verified')->default(false);
             $table->timestamps();
+
+            $table->index(['city', 'state']);
+            $table->index(['latitude', 'longitude']);
         });
     }
 

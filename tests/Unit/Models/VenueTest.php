@@ -39,10 +39,13 @@ class VenueTest extends BaseModelTesting implements
     {
         $fillable = [
             'name',
+            'city',
+            'state',
             'address',
             'latitude',
             'verified',
             'longitude',
+            'neighborhood',
         ];
 
         $this->assertHasFillables($fillable);
