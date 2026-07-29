@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Profile;
+use App\Casts\StorageUrl;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tests\Contracts\Models\{
@@ -55,6 +56,7 @@ class ProfileTest extends BaseModelTesting implements
         $casts = [
             'id' => 'int',
             'user_id' => 'int',
+            'avatar' => StorageUrl::class,
         ];
 
         $this->assertHasCasts($casts);

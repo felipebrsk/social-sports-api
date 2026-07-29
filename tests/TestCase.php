@@ -7,6 +7,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\DB;
+use PDO;
+use Pdo\Sqlite;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -33,6 +36,8 @@ abstract class TestCase extends BaseTestCase
         );
 
         Storage::fake($this->disk);
+
+        $this->registerSqliteMathFunctions();
     }
 
     /**
@@ -63,6 +68,26 @@ abstract class TestCase extends BaseTestCase
         $method = $reflection->getMethod($method);
 
         return $method->invokeArgs($object, $args);
+    }
+
+    /**
+     * Registers custom math functions for SQLite PDO connection in testing environments.
+     */
+    protected function registerSqliteMathFunctions(): void
+    {
+        if (DB::connection()->getDriverName() === 'sqlite') {
+            /** @var PDO $pdo */
+            $pdo = DB::connection()->getPdo();
+
+            if ($pdo instanceof Sqlite) {
+                $pdo->createFunction('acos', 'acos', 1);
+                $pdo->createFunction('cos', 'cos', 1);
+                $pdo->createFunction('sin', 'sin', 1);
+                $pdo->createFunction('radians', 'deg2rad', 1);
+
+                return;
+            }
+        }
     }
 
     /**

@@ -37,9 +37,9 @@
 
 - [x] **2.1. Consulta de Esportes (`Sport`)**
   - [x] `ListSportsController` (`GET /sports` -> `sports.index`): Lista simples de esportes para filtros e navegação.
-- [ ] **2.2. Consulta e Busca de Quadras (`Venue`)**
-  - [ ] `ListVenuesController` (`GET /venues` -> `venues.index`): Busca com filtros por `sport_id`, GPS (Haversine) ou Cidade/Estado.
-  - [ ] `ShowVenueController` (`GET /venues/{venue}` -> `venues.show`): Detalhes da quadra, endereço, fotos e esportes aceitos.
+- [x] **2.2. Consulta e Busca de Quadras (`Venue`)**
+  - [x] `VenueController`, `index` (`GET /venues` -> `venues.index`): Busca com filtros por `sport_id`, GPS (Haversine) ou Cidade/Estado.
+  - [x] `VenueController`, `show` (`GET /venues/{venue}` -> `venues.show`): Detalhes da quadra, endereço, fotos e esportes aceitos.
 - [ ] **2.3. Sessões de Jogo (`GameSession`)**
   - [ ] `CreateGameSessionController` (`POST /game-sessions` -> `game-sessions.store`): Criar jogo com verificação de sobreposição de horários na mesma quadra. Tratar flag `force_create`.
   - [ ] `ListGameSessionsController` (`GET /game-sessions` -> `game-sessions.index`): Feed principal por esporte, data, nível de habilidade e proximidade.

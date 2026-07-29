@@ -2,12 +2,9 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Team;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\MediaType;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tests\Contracts\Models\{
     ShouldTestCasts,
     ShouldTestTable,
@@ -18,7 +15,7 @@ use Tests\Contracts\Models\{
     ShouldTestFillables,
 };
 
-class TeamTest extends BaseModelTesting implements
+class MediaTypeTest extends BaseModelTesting implements
     ShouldTestCasts,
     ShouldTestTable,
     ShouldTestTraits,
@@ -31,7 +28,7 @@ class TeamTest extends BaseModelTesting implements
      */
     public function model(): string
     {
-        return Team::class;
+        return MediaType::class;
     }
 
     /**
@@ -41,10 +38,6 @@ class TeamTest extends BaseModelTesting implements
     {
         $fillable = [
             'name',
-            'logo',
-            'sport_id',
-            'leader_id',
-            'description',
         ];
 
         $this->assertHasFillables($fillable);
@@ -57,8 +50,6 @@ class TeamTest extends BaseModelTesting implements
     {
         $casts = [
             'id' => 'int',
-            'sport_id' => 'int',
-            'leader_id' => 'int',
         ];
 
         $this->assertHasCasts($casts);
@@ -70,11 +61,7 @@ class TeamTest extends BaseModelTesting implements
     public function test_relations_attributes(): void
     {
         $relations = [
-            'media' => MorphMany::class,
-            'sport' => BelongsTo::class,
-            'leader' => BelongsTo::class,
-            'users' => BelongsToMany::class,
-            'gameSessions' => HasMany::class,
+            'media' => HasMany::class,
         ];
 
         $this->assertHasRelations($relations);
@@ -97,7 +84,7 @@ class TeamTest extends BaseModelTesting implements
      */
     public function test_table_attribute(): void
     {
-        $table = 'teams';
+        $table = 'media_types';
 
         $this->assertHasTable($table);
     }

@@ -6,16 +6,22 @@ namespace App\Models;
 
 use Database\Factories\SportFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
     BelongsToMany,
 };
+use Illuminate\Database\Eloquent\Attributes\{
+    Hidden,
+    Fillable,
+};
 
 #[Fillable([
     'name',
     'icon',
+])]
+#[Hidden([
+    'pivot',
 ])]
 class Sport extends Model
 {

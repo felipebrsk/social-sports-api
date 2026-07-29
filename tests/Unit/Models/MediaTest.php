@@ -2,12 +2,11 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Team;
+use App\Models\Media;
+use App\Casts\StorageUrl;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Tests\Contracts\Models\{
     ShouldTestCasts,
     ShouldTestTable,
@@ -18,7 +17,7 @@ use Tests\Contracts\Models\{
     ShouldTestFillables,
 };
 
-class TeamTest extends BaseModelTesting implements
+class MediaTest extends BaseModelTesting implements
     ShouldTestCasts,
     ShouldTestTable,
     ShouldTestTraits,
@@ -31,7 +30,7 @@ class TeamTest extends BaseModelTesting implements
      */
     public function model(): string
     {
-        return Team::class;
+        return Media::class;
     }
 
     /**
@@ -40,11 +39,11 @@ class TeamTest extends BaseModelTesting implements
     public function test_fillable_attributes(): void
     {
         $fillable = [
-            'name',
-            'logo',
-            'sport_id',
-            'leader_id',
-            'description',
+            'path',
+            'alias',
+            'mediable_id',
+            'mediable_type',
+            'media_type_id',
         ];
 
         $this->assertHasFillables($fillable);
@@ -57,8 +56,8 @@ class TeamTest extends BaseModelTesting implements
     {
         $casts = [
             'id' => 'int',
-            'sport_id' => 'int',
-            'leader_id' => 'int',
+            'media_type_id' => 'int',
+            'path' => StorageUrl::class,
         ];
 
         $this->assertHasCasts($casts);
@@ -70,11 +69,8 @@ class TeamTest extends BaseModelTesting implements
     public function test_relations_attributes(): void
     {
         $relations = [
-            'media' => MorphMany::class,
-            'sport' => BelongsTo::class,
-            'leader' => BelongsTo::class,
-            'users' => BelongsToMany::class,
-            'gameSessions' => HasMany::class,
+            'type' => BelongsTo::class,
+            'mediable' => MorphTo::class,
         ];
 
         $this->assertHasRelations($relations);
@@ -97,7 +93,7 @@ class TeamTest extends BaseModelTesting implements
      */
     public function test_table_attribute(): void
     {
-        $table = 'teams';
+        $table = 'media';
 
         $this->assertHasTable($table);
     }
