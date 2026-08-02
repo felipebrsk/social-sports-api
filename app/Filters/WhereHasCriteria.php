@@ -9,13 +9,17 @@ use Illuminate\Database\Eloquent\{
     Builder,
 };
 
+/**
+ * @template TModel of Model
+ * @implements CriterionFilterInterface<TModel>
+ */
 class WhereHasCriteria implements CriterionFilterInterface
 {
     /**
      * Create a new filter instance.
      *
      * @param string $relation
-     * @param (Closure(Builder<Model>): mixed)|null  $callback
+     * @param (Closure(Builder<TModel>): mixed)|null  $callback
      * @return void
      */
     public function __construct(

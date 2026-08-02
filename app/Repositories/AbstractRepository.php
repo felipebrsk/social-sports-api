@@ -41,7 +41,7 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
     /**
      * The relations to eager load.
      *
-     * @var array<string>
+     * @var array<int|string, (\Closure)|string>
      */
     protected array $with = [];
 
@@ -62,7 +62,7 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
     /**
      * The criterias for the filters.
      *
-     * @var array<CriterionFilterInterface>
+     * @var array<CriterionFilterInterface<TModel>>
      */
     protected array $criteria = [];
 
@@ -263,9 +263,15 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
         /** @var string $sortOrder */
         $sortOrder = $params['sort_order'] ?? $this->defaultSortOrder;
 
+        /** @var FilterCriteria<TModel> $filterCriteria */
+        $filterCriteria = new FilterCriteria($filters, $this->allowedFilters);
+
+        /** @var SortCriteria<TModel> $sortCriteria */
+        $sortCriteria = new SortCriteria($sortBy, $sortOrder, $this->allowedSorts);
+
         $this->withCriteria(
-            new FilterCriteria($filters, $this->allowedFilters),
-            new SortCriteria($sortBy, $sortOrder, $this->allowedSorts)
+            $filterCriteria,
+            $sortCriteria,
         );
 
         return $this->paginate($perPage);
@@ -288,10 +294,19 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
         /** @var int|null $limit */
         $limit = $params['limit'] ?? $this->defaultLimit;
 
+        /** @var FilterCriteria<TModel> $filterCriteria */
+        $filterCriteria = new FilterCriteria($filters, $this->allowedFilters);
+
+        /** @var SortCriteria<TModel> $sortCriteria */
+        $sortCriteria = new SortCriteria($sortBy, $sortOrder, $this->allowedSorts);
+
+        /** @var LimitCriteria<TModel> $limitCriteria */
+        $limitCriteria = new LimitCriteria($limit);
+
         $this->withCriteria(
-            new FilterCriteria($filters, $this->allowedFilters),
-            new SortCriteria($sortBy, $sortOrder, $this->allowedSorts),
-            new LimitCriteria($limit),
+            $filterCriteria,
+            $sortCriteria,
+            $limitCriteria,
         );
 
         return $this->all();

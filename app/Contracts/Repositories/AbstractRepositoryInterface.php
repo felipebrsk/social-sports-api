@@ -29,15 +29,15 @@ interface AbstractRepositoryInterface extends FilterableRepositoryInterface
     /**
      * Accumulates the criteria to be applied.
      *
-     * @param CriterionFilterInterface ...$criteria
+     * @param CriterionFilterInterface<TModel> ...$criteria
      * @return static
      */
     public function withCriteria(CriterionFilterInterface ...$criteria): static;
 
     /**
-     * Set the relations to eager load.
+     * Add relations to eager load.
      *
-     * @param array<string> $relations
+     * @param array<int|string, (Closure)|string> $relations
      * @return static
      */
     public function withRelations(array $relations): static;
@@ -213,7 +213,7 @@ interface AbstractRepositoryInterface extends FilterableRepositoryInterface
     /**
      * Delete a model by given instance.
      *
-     * @param Model $model
+     * @param TModel $model
      * @return void
      */
     public function deleteByInstance(Model $model): void;

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
     BelongsTo,
+    MorphMany,
     BelongsToMany,
 };
 
@@ -78,5 +79,15 @@ class Team extends Model
             ->using(TeamUser::class)
             ->withPivot(['role_id'])
             ->withTimestamps();
+    }
+
+    /**
+     * Get all of the product's media.
+     *
+     * @return MorphMany<Media, $this>
+     */
+    public function media(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediable');
     }
 }

@@ -5,9 +5,14 @@ namespace App\Filters;
 use App\Contracts\Filters\CriterionFilterInterface;
 use Illuminate\Contracts\Database\Query\Expression;
 use Illuminate\Database\Eloquent\{
+    Model,
     Builder,
 };
 
+/**
+ * @template TModel of Model
+ * @implements CriterionFilterInterface<TModel>
+ */
 class WhereNullCriteria implements CriterionFilterInterface
 {
     /**

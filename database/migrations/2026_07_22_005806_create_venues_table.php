@@ -16,14 +16,17 @@ return new class () extends Migration {
             $table->string('city');
             $table->string('address');
             $table->string('state', 2);
-            $table->string('neighborhood')->nullable();
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->boolean('verified')->default(false);
+            $table->boolean('featured')->default(false);
+            $table->string('neighborhood')->nullable()->index();
             $table->timestamps();
 
             $table->index(['city', 'state']);
+            $table->index(['featured', 'verified']);
             $table->index(['latitude', 'longitude']);
+            $table->index(['city', 'state', 'featured', 'verified']);
         });
     }
 

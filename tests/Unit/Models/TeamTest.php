@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Tests\Contracts\Models\{
     ShouldTestCasts,
     ShouldTestTable,
@@ -69,6 +70,7 @@ class TeamTest extends BaseModelTesting implements
     public function test_relations_attributes(): void
     {
         $relations = [
+            'media' => MorphMany::class,
             'sport' => BelongsTo::class,
             'leader' => BelongsTo::class,
             'users' => BelongsToMany::class,

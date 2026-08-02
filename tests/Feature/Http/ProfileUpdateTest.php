@@ -35,10 +35,7 @@ class ProfileUpdateTest extends BaseIntegrationTesting
         array $payload,
         array $expectedErrorMessages,
     ): void {
-        $user = $this->createDummyUser();
-
-        $response = $this->actingAs($user)
-            ->putJson(route($this->getRouteName()), $payload)
+        $response = $this->putJson(route($this->getRouteName()), $payload)
             ->assertUnprocessable()
             ->assertJsonValidationErrors(array_keys($expectedErrorMessages));
 
@@ -144,9 +141,10 @@ class ProfileUpdateTest extends BaseIntegrationTesting
 
         $profile->refresh();
 
-        $this->assertNotNull($profile->avatar);
+        /** @var string $avatarPath */
+        $avatarPath = $profile->getRawOriginal('avatar');
 
-        Storage::disk($this->disk)->assertExists($profile->avatar);
+        Storage::disk($this->disk)->assertExists($avatarPath);
     }
 
     /**
@@ -177,10 +175,11 @@ class ProfileUpdateTest extends BaseIntegrationTesting
 
         Storage::disk($this->disk)->assertMissing($oldAvatarPath);
 
-        $this->assertNotNull($profile->avatar);
-        $this->assertNotEquals($oldAvatarPath, $profile->avatar);
+        /** @var string $newAvatarPath */
+        $newAvatarPath = $profile->getRawOriginal('avatar');
 
-        Storage::disk($this->disk)->assertExists($profile->avatar);
+        $this->assertNotEquals($oldAvatarPath, $newAvatarPath);
+        Storage::disk($this->disk)->assertExists($newAvatarPath);
     }
 
     /**

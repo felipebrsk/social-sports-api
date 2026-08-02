@@ -4,12 +4,20 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Database\Factories\VenueFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+};
+use Illuminate\Database\Eloquent\Attributes\{
+    Hidden,
+    Fillable,
+};
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
+    MorphMany,
     BelongsToMany,
 };
 
@@ -20,8 +28,12 @@ use Illuminate\Database\Eloquent\Relations\{
     'address',
     'latitude',
     'verified',
+    'featured',
     'longitude',
     'neighborhood',
+])]
+#[Hidden([
+    'pivot',
 ])]
 class Venue extends Model
 {
@@ -35,6 +47,7 @@ class Venue extends Model
     {
         return [
             'verified' => 'bool',
+            'featured' => 'bool',
             'latitude' => 'float',
             'longitude' => 'float',
         ];
@@ -73,5 +86,62 @@ class Venue extends Model
             ->using(VenueManager::class)
             ->withPivot(['role_id'])
             ->withTimestamps();
+    }
+
+    /**
+     * Get all of the product's media.
+     *
+     * @return MorphMany<Media, $this>
+     */
+    public function media(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediable');
+    }
+
+    /**
+     * Scope to add calculated distance column in km.
+     *
+     * @param Builder<Venue> $query
+     * @param float $latitude
+     * @param float $longitude
+     * @return Builder<Venue>
+     */
+    public function scopeWithDistance(Builder $query, float $latitude, float $longitude): Builder
+    {
+        return $query->addSelect(DB::raw(
+            /** @phpstan-ignore-next-line */
+            static::distanceFormula($latitude, $longitude) . ' AS distance_in_km',
+        ));
+    }
+
+    /**
+     * Scope to filter by maximum radius in km.
+     *
+     * @param Builder<Venue> $query
+     * @param float $radiusKm
+     * @param float $latitude
+     * @param float $longitude
+     * @return Builder<Venue>
+     */
+    public function scopeWithinRadius(Builder $query, float $radiusKm, float $latitude, float $longitude): Builder
+    {
+        return $query->whereRaw(
+            /** @phpstan-ignore-next-line */
+            static::distanceFormula($latitude, $longitude) . ' <= ' . $radiusKm,
+        );
+    }
+
+    /**
+     * Build the haversine distance SQL expression.
+     *
+     * @param float $latitude
+     * @param float $longitude
+     * @return string
+     */
+    protected static function distanceFormula(float $latitude, float $longitude): string
+    {
+        return "( 6371 * acos( cos( radians({$latitude}) ) * cos( radians( latitude ) )
+            * cos( radians( longitude ) - radians({$longitude}) ) + sin( radians({$latitude}) )
+            * sin( radians( latitude ) ) ) )";
     }
 }

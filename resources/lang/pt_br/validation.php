@@ -214,6 +214,8 @@ return [
         'due_date' => 'data de vencimento',
         'file_type' => 'tipo de arquivo',
         'file' => 'arquivo',
+        'radius_km' => 'raio em km',
+        'sport_id' => 'esporte',
     ],
 
     'password' => [

@@ -2,14 +2,21 @@
 
 namespace App\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Filters\CriterionFilterInterface;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+};
 
 use function is_int;
 use function is_bool;
 use function in_array;
 use function preg_match;
 
+/**
+ * @template TModel of Model
+ * @implements CriterionFilterInterface<TModel>
+ */
 class FilterCriteria implements CriterionFilterInterface
 {
     /**
@@ -27,7 +34,7 @@ class FilterCriteria implements CriterionFilterInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function apply(Builder $query): Builder
     {

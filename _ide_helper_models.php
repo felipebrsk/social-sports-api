@@ -90,14 +90,38 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * @property-read \App\Models\FeedbackCategory|null $category
- * @property-read \App\Models\FeedbackStatus|null $status
- * @property-read \App\Models\User|null $user
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property string|null $admin_notes
+ * @property string|null $feedbackable_type
+ * @property int|null $feedbackable_id
+ * @property int $feedback_status_id
+ * @property int $feedback_category_id
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\FeedbackCategory $category
+ * @property-read \App\Models\FeedbackStatus $status
+ * @property-read \App\Models\User $user
  * @method static \Database\Factories\FeedbackFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereAdminNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereFeedbackCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereFeedbackStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereFeedbackableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereFeedbackableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Feedback withoutTrashed()
  */
@@ -106,24 +130,44 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Feedback> $feedbacks
  * @property-read int|null $feedbacks_count
  * @method static \Database\Factories\FeedbackCategoryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackCategory whereUpdatedAt($value)
  */
 	class FeedbackCategory extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Feedback> $feedbacks
  * @property-read int|null $feedbacks_count
  * @method static \Database\Factories\FeedbackStatusFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|FeedbackStatus whereUpdatedAt($value)
  */
 	class FeedbackStatus extends \Eloquent {}
 }
@@ -136,6 +180,7 @@ namespace App\Models{
  * @property string|null $description
  * @property \Illuminate\Support\Carbon|null $end_time
  * @property bool $featured
+ * @property int $external_players_count
  * @property int $venue_id
  * @property int $sport_id
  * @property int $game_session_status_id
@@ -165,6 +210,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSession whereCreatorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSession whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSession whereEndTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSession whereExternalPlayersCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSession whereFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSession whereGameSessionStatusId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSession whereHostTeamId($value)
@@ -249,6 +295,31 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameSessionStatus whereUpdatedAt($value)
  */
 	class GameSessionStatus extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property string $path
+ * @property-read \Illuminate\Database\Eloquent\Model $mediable
+ * @property-read \App\Models\MediaType|null $type
+ * @method static \Database\Factories\MediaFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Media newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Media newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Media query()
+ */
+	class Media extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Media> $media
+ * @property-read int|null $media_count
+ * @method static \Database\Factories\MediaTypeFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|MediaType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|MediaType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|MediaType query()
+ */
+	class MediaType extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -541,6 +612,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GameSession> $gameSessions
  * @property-read int|null $game_sessions_count
  * @property-read \App\Models\User $leader
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Media> $media
+ * @property-read int|null $media_count
  * @property-read \App\Models\Sport $sport
  * @property-read \App\Models\TeamUser|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
@@ -642,10 +715,14 @@ namespace App\Models{
 /**
  * @property int $id
  * @property string $name
+ * @property string $city
  * @property string $address
+ * @property string $state
+ * @property string|null $neighborhood
  * @property float $latitude
  * @property float $longitude
  * @property bool $verified
+ * @property bool $featured
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GameSession> $gameSessions
@@ -653,6 +730,8 @@ namespace App\Models{
  * @property-read \App\Models\VenueSport|\App\Models\VenueManager|null $pivot
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $managers
  * @property-read int|null $managers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Media> $media
+ * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Sport> $sports
  * @property-read int|null $sports_count
  * @method static \Database\Factories\VenueFactory factory($count = null, $state = [])
@@ -660,13 +739,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereLatitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereNeighborhood($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue whereVerified($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue withDistance(float $latitude, float $longitude)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Venue withinRadius(float $radiusKm, float $latitude, float $longitude)
  */
 	class Venue extends \Eloquent {}
 }
