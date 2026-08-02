@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Venue;
-use App\Repositories\AbstractRepository;
 use App\Contracts\Repositories\VenueRepositoryInterface;
 
 /**

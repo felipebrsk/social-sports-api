@@ -81,10 +81,10 @@ class VenueSearchFilterTest extends TestCase
 
         $query = $filter->apply(Venue::query());
 
-        $expectedSql = 'select ( 6371 * acos( cos( radians(-23.55052) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-46.633308) ) + sin( radians(-23.55052) ) * sin( radians( latitude ) ) ) ) AS distance_in_km from "venues" having "distance_in_km" <= ? order by "featured" desc, "verified" desc, "distance_in_km" asc';
+        $expectedSql = 'select ( 6371 * acos( cos( radians(-23.55052) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-46.633308) ) + sin( radians(-23.55052) ) * sin( radians( latitude ) ) ) ) AS distance_in_km from "venues" where ( 6371 * acos( cos( radians(-23.55052) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-46.633308) ) + sin( radians(-23.55052) ) * sin( radians( latitude ) ) ) ) <= 20 order by "featured" desc, "verified" desc, "distance_in_km" asc';
 
         $this->assertEquals($expectedSql, $this->normalizeSql($query->toSql()));
-        $this->assertEquals([$radiusKm], $query->getBindings());
+        $this->assertEmpty($query->getBindings());
     }
 
     /**
@@ -102,7 +102,10 @@ class VenueSearchFilterTest extends TestCase
 
         $query = $filter->apply(Venue::query());
 
-        $this->assertEquals([15.0], $query->getBindings());
+        $expectedSql = 'select ( 6371 * acos( cos( radians(-12.9714) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-38.5014) ) + sin( radians(-12.9714) ) * sin( radians( latitude ) ) ) ) AS distance_in_km from "venues" where ( 6371 * acos( cos( radians(-12.9714) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-38.5014) ) + sin( radians(-12.9714) ) * sin( radians( latitude ) ) ) ) <= 15 order by "featured" desc, "verified" desc, "distance_in_km" asc';
+
+        $this->assertEquals($expectedSql, $this->normalizeSql($query->toSql()));
+        $this->assertEmpty($query->getBindings());
     }
 
     /**
@@ -159,7 +162,7 @@ class VenueSearchFilterTest extends TestCase
 
         $query = $filter->apply(Venue::query());
 
-        $expectedSql = 'select ( 6371 * acos( cos( radians(-12.9714) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-38.5014) ) + sin( radians(-12.9714) ) * sin( radians( latitude ) ) ) ) AS distance_in_km from "venues" where ("name" LIKE ? or "address" LIKE ? or "neighborhood" LIKE ? or "city" LIKE ?) and exists (select * from "sports" inner join "venue_sports" on "sports"."id" = "venue_sports"."sport_id" where "venues"."id" = "venue_sports"."venue_id" and "sports"."id" = ?) having "distance_in_km" <= ? order by "featured" desc, "verified" desc, "distance_in_km" asc';
+        $expectedSql = 'select ( 6371 * acos( cos( radians(-12.9714) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-38.5014) ) + sin( radians(-12.9714) ) * sin( radians( latitude ) ) ) ) AS distance_in_km from "venues" where ("name" LIKE ? or "address" LIKE ? or "neighborhood" LIKE ? or "city" LIKE ?) and exists (select * from "sports" inner join "venue_sports" on "sports"."id" = "venue_sports"."sport_id" where "venues"."id" = "venue_sports"."venue_id" and "sports"."id" = ?) and ( 6371 * acos( cos( radians(-12.9714) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-38.5014) ) + sin( radians(-12.9714) ) * sin( radians( latitude ) ) ) ) <= 10 order by "featured" desc, "verified" desc, "distance_in_km" asc';
 
         $this->assertEquals($expectedSql, $this->normalizeSql($query->toSql()));
         $this->assertEquals([
@@ -168,7 +171,6 @@ class VenueSearchFilterTest extends TestCase
             '%Beach%',
             '%Beach%',
             3,
-            10.0,
         ], $query->getBindings());
     }
 
@@ -180,6 +182,9 @@ class VenueSearchFilterTest extends TestCase
      */
     private function normalizeSql(string $sql): string
     {
-        return preg_replace('/\s+/', ' ', trim($sql));
+        /** @var string $normalized */
+        $normalized = preg_replace('/\s+/', ' ', trim($sql));
+
+        return $normalized;
     }
 }

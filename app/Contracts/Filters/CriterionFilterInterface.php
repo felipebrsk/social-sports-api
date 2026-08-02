@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\{
     Builder,
 };
 
+/**
+ * @template TModel of Model
+ */
 interface CriterionFilterInterface
 {
     /**
      * Apply the logic to query builder.
-     *
-     * @template TModel of Model
      *
      * @param Builder<TModel> $query
      * @return Builder<TModel>

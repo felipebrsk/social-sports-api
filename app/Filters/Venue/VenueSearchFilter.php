@@ -6,12 +6,15 @@ use App\Models\Venue;
 use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Filters\CriterionFilterInterface;
 
+/**
+ * @implements CriterionFilterInterface<Venue>
+ */
 class VenueSearchFilter implements CriterionFilterInterface
 {
     /**
      * Create a new filter instance.
      *
-     * @param array<string, mixed> $filters
+     * @param array<string, string|int|float|null> $filters
      */
     public function __construct(
         private readonly array $filters,
@@ -21,8 +24,6 @@ class VenueSearchFilter implements CriterionFilterInterface
 
     /**
      * {@inheritDoc}
-     *
-     * @param Builder<Venue> $query
      */
     public function apply(Builder $query): Builder
     {
@@ -51,7 +52,7 @@ class VenueSearchFilter implements CriterionFilterInterface
             $radiusKm = (float) ($this->filters['radius_km'] ?? 15.0);
 
             $query->withDistance($lat, $lng)
-                ->withinRadius($radiusKm)
+                ->withinRadius($radiusKm, $lat, $lng)
                 ->orderBy('featured', 'desc')
                 ->orderBy('verified', 'desc')
                 ->orderBy('distance_in_km', 'asc');

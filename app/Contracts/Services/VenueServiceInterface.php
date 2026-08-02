@@ -4,7 +4,6 @@ namespace App\Contracts\Services;
 
 use App\Models\Venue;
 use Illuminate\Database\Eloquent\Collection;
-use App\Contracts\Services\AbstractServiceInterface;
 
 /**
  * @extends AbstractServiceInterface<Venue>

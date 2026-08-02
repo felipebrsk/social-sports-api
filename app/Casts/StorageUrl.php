@@ -9,18 +9,28 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 use function is_string;
 
+/**
+ * @implements CastsAttributes<?string, mixed>
+ */
 class StorageUrl implements CastsAttributes
 {
     /**
+     * The storage service instance.
+     *
+     * @var StorageServiceInterface
+     */
+    private StorageServiceInterface $storageService;
+
+    /**
      * Create a new cast instance.
      *
-     * @param StorageServiceInterface $storageService
+     * @param StorageServiceInterface|null $storageService
      * @return void
      */
     public function __construct(
-        private ?StorageServiceInterface $storageService = null,
+        ?StorageServiceInterface $storageService = null,
     ) {
-        $this->storageService ??= app(StorageServiceInterface::class);
+        $this->storageService = $storageService ?? app(StorageServiceInterface::class);
     }
 
     /**

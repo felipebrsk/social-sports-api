@@ -140,21 +140,23 @@ class VenueTest extends BaseModelTesting implements
     }
 
     /**
-     * Test scope withinRadius filters query by distance using having clause.
+     * Test scope withinRadius filters query by distance using raw formula in where clause.
      *
      * @return void
      */
     public function test_within_radius_scope(): void
     {
         $radiusKm = 15.5;
+        $latitude = -23.550520;
+        $longitude = -46.633308;
 
-        $query = Venue::query()->withinRadius($radiusKm);
+        $query = Venue::query()->withinRadius($radiusKm, $latitude, $longitude);
 
-        $this->assertEquals(
-            'select * from "venues" having "distance_in_km" <= ?',
-            $query->toSql(),
-        );
+        $expectedSql = 'select * from "venues" where ( 6371 * acos( cos( radians(-23.55052) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(-46.633308) ) + sin( radians(-23.55052) ) * sin( radians( latitude ) ) ) ) <= 15.5';
 
-        $this->assertEquals([$radiusKm], $query->getBindings());
+        $actualSql = preg_replace('/\s+/', ' ', trim($query->toSql()));
+        $expectedSqlNormalized = preg_replace('/\s+/', ' ', trim($expectedSql));
+
+        $this->assertEquals($expectedSqlNormalized, $actualSql);
     }
 }

@@ -108,12 +108,10 @@ class Venue extends Model
      */
     public function scopeWithDistance(Builder $query, float $latitude, float $longitude): Builder
     {
-        /** @phpstan-ignore-next-line */
-        return $query->addSelect(DB::raw("
-            ( 6371 * acos( cos( radians({$latitude}) ) * cos( radians( latitude ) ) 
-            * cos( radians( longitude ) - radians({$longitude}) ) + sin( radians({$latitude}) ) 
-            * sin( radians( latitude ) ) ) ) AS distance_in_km
-        "));
+        return $query->addSelect(DB::raw(
+            /** @phpstan-ignore-next-line */
+            static::distanceFormula($latitude, $longitude) . ' AS distance_in_km',
+        ));
     }
 
     /**
@@ -121,10 +119,29 @@ class Venue extends Model
      *
      * @param Builder<Venue> $query
      * @param float $radiusKm
+     * @param float $latitude
+     * @param float $longitude
      * @return Builder<Venue>
      */
-    public function scopeWithinRadius(Builder $query, float $radiusKm): Builder
+    public function scopeWithinRadius(Builder $query, float $radiusKm, float $latitude, float $longitude): Builder
     {
-        return $query->havingRaw('distance_in_km <= ?', [$radiusKm]);
+        return $query->whereRaw(
+            /** @phpstan-ignore-next-line */
+            static::distanceFormula($latitude, $longitude) . ' <= ' . $radiusKm,
+        );
+    }
+
+    /**
+     * Build the haversine distance SQL expression.
+     *
+     * @param float $latitude
+     * @param float $longitude
+     * @return string
+     */
+    protected static function distanceFormula(float $latitude, float $longitude): string
+    {
+        return "( 6371 * acos( cos( radians({$latitude}) ) * cos( radians( latitude ) )
+            * cos( radians( longitude ) - radians({$longitude}) ) + sin( radians({$latitude}) )
+            * sin( radians( latitude ) ) ) )";
     }
 }

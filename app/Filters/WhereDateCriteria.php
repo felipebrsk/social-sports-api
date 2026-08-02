@@ -3,9 +3,16 @@
 namespace App\Filters;
 
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Filters\CriterionFilterInterface;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+};
 
+/**
+ * @template TModel of Model
+ * @implements CriterionFilterInterface<TModel>
+ */
 class WhereDateCriteria implements CriterionFilterInterface
 {
     /**

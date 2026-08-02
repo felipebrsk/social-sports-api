@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http;
+namespace Tests\Feature\Http\Venue;
 
 use Generator;
 use Illuminate\Support\Carbon;

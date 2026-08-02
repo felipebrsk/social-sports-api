@@ -2,9 +2,16 @@
 
 namespace App\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Filters\CriterionFilterInterface;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+};
 
+/**
+ * @template TModel of Model
+ * @implements CriterionFilterInterface<TModel>
+ */
 class WhereCriteria implements CriterionFilterInterface
 {
     /**
@@ -19,6 +26,7 @@ class WhereCriteria implements CriterionFilterInterface
         protected mixed $value,
         protected string $operator = '=',
     ) {
+        //
     }
 
     /**

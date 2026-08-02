@@ -23,11 +23,11 @@ class VenueController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param VenueServiceInterface $sportService
+     * @param VenueServiceInterface $venueService
      * @return void
      */
     public function __construct(
-        private readonly VenueServiceInterface $sportService,
+        private readonly VenueServiceInterface $venueService,
     ) {
         //
     }
@@ -48,7 +48,7 @@ class VenueController extends Controller
         /** @var array<string, mixed> $data */
         $data = $request->validated();
 
-        $venues = $this->sportService->searchVenues($data);
+        $venues = $this->venueService->searchVenues($data);
 
         return VenueResource::collection($venues);
     }
@@ -69,7 +69,7 @@ class VenueController extends Controller
         /** @var array<string, string|float> $data */
         $data = $request->validated();
 
-        $venue = $this->sportService->getVenueDetails($id, $data);
+        $venue = $this->venueService->getVenueDetails($id, $data);
 
         return VenueDetailsResource::make($venue);
     }

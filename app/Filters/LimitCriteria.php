@@ -2,9 +2,16 @@
 
 namespace App\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Filters\CriterionFilterInterface;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+};
 
+/**
+ * @template TModel of Model
+ * @implements CriterionFilterInterface<TModel>
+ */
 class LimitCriteria implements CriterionFilterInterface
 {
     /**
@@ -16,6 +23,7 @@ class LimitCriteria implements CriterionFilterInterface
     public function __construct(
         protected readonly ?int $limit = null,
     ) {
+        //
     }
 
     /**

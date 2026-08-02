@@ -42,7 +42,7 @@ class Media extends Model
     /**
      * Get the mediable that owns the Media.
      *
-     * @return MorphTo<Model, self>
+     * @return MorphTo<Model, $this>
      */
     public function mediable(): MorphTo
     {
@@ -52,7 +52,7 @@ class Media extends Model
     /**
      * Get the type that owns the Media
      *
-     * @return BelongsTo<MediaType, self>
+     * @return BelongsTo<MediaType, $this>
      */
     public function type(): BelongsTo
     {

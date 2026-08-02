@@ -42,7 +42,11 @@ class ProfileService extends AbstractService implements ProfileServiceInterface
             'avatar',
         ])->findOrFailBy('user_id', $data->uid);
 
-        $path = $profile->avatar;
+        /** @var string|null $oldAvatar */
+        $oldAvatar = $profile->getRawOriginal('avatar');
+
+        $path = $oldAvatar;
+
         if ($data->avatar) {
             $extension = $data->avatar->getClientOriginalExtension() ?: 'png';
             $filename = sprintf('avatar_%s_%s.%s', $data->uid, Str::uuid(), $extension);
@@ -51,7 +55,7 @@ class ProfileService extends AbstractService implements ProfileServiceInterface
                 $data->avatar,
                 'profiles',
                 $filename,
-                $profile->avatar,
+                $oldAvatar,
             );
         }
 

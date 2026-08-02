@@ -2,11 +2,18 @@
 
 namespace App\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Filters\CriterionFilterInterface;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+};
 
 use function in_array;
 
+/**
+ * @template TModel of Model
+ * @implements CriterionFilterInterface<TModel>
+ */
 class SortCriteria implements CriterionFilterInterface
 {
     /**

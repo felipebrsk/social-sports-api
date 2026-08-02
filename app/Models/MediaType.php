@@ -19,7 +19,7 @@ class MediaType extends Model
     /**
      * Get all of the media for the MediaType
      *
-     * @return HasMany<Media>
+     * @return HasMany<Media, $this>
      */
     public function media(): HasMany
     {

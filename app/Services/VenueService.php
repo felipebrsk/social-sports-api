@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Venue;
 use Illuminate\Support\Carbon;
-use App\Services\AbstractService;
 use App\Enums\GameSessionStatusEnum;
 use App\Contracts\Services\VenueServiceInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -39,7 +38,7 @@ class VenueService extends AbstractService implements VenueServiceInterface
      */
     public function searchVenues(array $params): Collection
     {
-        /** @var array<string, mixed> $filters */
+        /** @var array<string, float|int|string|null> $filters */
         $filters = $params['filter_by'] ?? $params;
 
         $now = Carbon::now()->toDateTimeString();

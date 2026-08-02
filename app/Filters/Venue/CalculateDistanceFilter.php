@@ -1,12 +1,14 @@
 <?php
 
-
 namespace App\Filters\Venue;
 
 use App\Models\Venue;
 use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Filters\CriterionFilterInterface;
 
+/**
+ * @implements CriterionFilterInterface<Venue>
+ */
 class CalculateDistanceFilter implements CriterionFilterInterface
 {
     /**
@@ -25,8 +27,6 @@ class CalculateDistanceFilter implements CriterionFilterInterface
 
     /**
      * {@inheritDoc}
-     *
-     * @param Builder<Venue> $query
      */
     public function apply(Builder $query): Builder
     {

@@ -83,7 +83,7 @@ class ProfileServiceTest extends TestCase
 
         $profile = Mockery::mock(Profile::class);
         $profile
-            ->shouldReceive('getAttribute')
+            ->shouldReceive('getRawOriginal')
             ->with('avatar')
             ->andReturn('profiles/avatar_antigo.png');
 
@@ -135,7 +135,7 @@ class ProfileServiceTest extends TestCase
 
         $profile = Mockery::mock(Profile::class);
         $profile
-            ->shouldReceive('getAttribute')
+            ->shouldReceive('getRawOriginal')
             ->with('avatar')
             ->andReturn('profiles/avatar_antigo.png');
 
@@ -159,7 +159,7 @@ class ProfileServiceTest extends TestCase
             ->with(
                 $file,
                 'profiles',
-                Mockery::pattern('/^avatar_1_[a-f0-9\-]+\.jpg$/'), // avatar_{uid}_{uuid}.jpg
+                Mockery::pattern('/^avatar_1_[a-f0-9\-]+\.jpg$/'),
                 'profiles/avatar_antigo.png',
             )->andReturn('profiles/avatar_1_uuid_fake.jpg');
 
@@ -193,7 +193,7 @@ class ProfileServiceTest extends TestCase
 
         $profile = Mockery::mock(Profile::class);
         $profile
-            ->shouldReceive('getAttribute')
+            ->shouldReceive('getRawOriginal')
             ->with('avatar')
             ->andReturn('profiles/avatar_antigo.png');
 
