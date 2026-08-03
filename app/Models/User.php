@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\{
     'email',
     'blocked',
     'password',
+    'email_verified_at',
 ])]
 #[Hidden([
     'password',

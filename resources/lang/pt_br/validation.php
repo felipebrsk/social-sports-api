@@ -216,6 +216,7 @@ return [
         'file' => 'arquivo',
         'radius_km' => 'raio em km',
         'sport_id' => 'esporte',
+        'id_token' => 'token',
     ],
 
     'password' => [

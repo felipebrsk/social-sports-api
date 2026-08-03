@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\GameSessionRequestStatusEnum;
 use App\Models\Venue;
 use Illuminate\Support\Carbon;
 use App\Enums\GameSessionStatusEnum;
@@ -107,6 +108,10 @@ class VenueService extends AbstractService implements VenueServiceInterface
                     'max_players',
                     'skill_level_id',
                     'external_players_count',
+                ])->withCount([
+                    'requests as approved_requests_count' => function (Builder $query) {
+                        $query->where('game_session_request_status_id', GameSessionRequestStatusEnum::APPROVED->value);
+                    },
                 ])->with([
                     'creator:id,name',
                     'creator.profile:id,avatar,user_id',

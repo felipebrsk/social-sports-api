@@ -1665,6 +1665,7 @@ namespace PHPSTORM_META {
             'services.ses.region' => 'string',
             'services.slack.notifications.bot_user_oauth_token' => 'NULL',
             'services.slack.notifications.channel' => 'NULL',
+            'services.google.client_id' => 'string',
             'session.driver' => 'string',
             'session.lifetime' => 'integer',
             'session.expire_on_close' => 'boolean',
@@ -2166,6 +2167,7 @@ namespace PHPSTORM_META {
             'services.ses.region' => 'string',
             'services.slack.notifications.bot_user_oauth_token' => 'NULL',
             'services.slack.notifications.channel' => 'NULL',
+            'services.google.client_id' => 'string',
             'session.driver' => 'string',
             'session.lifetime' => 'integer',
             'session.expire_on_close' => 'boolean',
@@ -2667,6 +2669,7 @@ namespace PHPSTORM_META {
             'services.ses.region' => 'string',
             'services.slack.notifications.bot_user_oauth_token' => 'NULL',
             'services.slack.notifications.channel' => 'NULL',
+            'services.google.client_id' => 'string',
             'session.driver' => 'string',
             'session.lifetime' => 'integer',
             'session.expire_on_close' => 'boolean',
@@ -2823,11 +2826,11 @@ namespace PHPSTORM_META {
 'scramble.renderers.scalar.darkMode','scramble.renderers.scalar.showDeveloperTools','scramble.renderers.scalar.agent.disabled','scramble.renderers.scalar.credentials','scramble.servers',
 'scramble.enum_cases_description_strategy','scramble.enum_cases_names_strategy','scramble.flatten_deep_query_parameters','scramble.middleware','scramble.extensions',
 'scramble.security_strategy','services.postmark.key','services.resend.key','services.ses.key','services.ses.secret',
-'services.ses.region','services.slack.notifications.bot_user_oauth_token','services.slack.notifications.channel','session.driver','session.lifetime',
-'session.expire_on_close','session.encrypt','session.files','session.connection','session.table',
-'session.store','session.lottery','session.cookie','session.path','session.domain',
-'session.secure','session.http_only','session.same_site','session.partitioned','session.serialization',
-'tinker.commands','tinker.alias','tinker.dont_alias','tinker.trust_project',);
+'services.ses.region','services.slack.notifications.bot_user_oauth_token','services.slack.notifications.channel','services.google.client_id','session.driver',
+'session.lifetime','session.expire_on_close','session.encrypt','session.files','session.connection',
+'session.table','session.store','session.lottery','session.cookie','session.path',
+'session.domain','session.secure','session.http_only','session.same_site','session.partitioned',
+'session.serialization','tinker.commands','tinker.alias','tinker.dont_alias','tinker.trust_project',);
         registerArgumentsSet('middleware', 
 'web','api','auth','auth.basic','auth.session',
 'cache.headers','can','guest','password.confirm','precognitive',
@@ -2926,7 +2929,7 @@ namespace PHPSTORM_META {
 'MAIL_MAILER','MAIL_HOST','MAIL_PORT','MAIL_USERNAME','MAIL_PASSWORD',
 'MAIL_FROM_ADDRESS','MAIL_FROM_NAME','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','AWS_DEFAULT_REGION',
 'AWS_BUCKET','AWS_USE_PATH_STYLE_ENDPOINT','VITE_APP_NAME','AUTH_GUARD','RAY_HOST',
-'JWT_SECRET','JWT_TTL',);
+'JWT_SECRET','JWT_TTL','GOOGLE_CLIENT_ID',);
         
                 expectedArguments(\Illuminate\Support\Facades\Gate::has(), 0, argumentsSet('auth'));
     expectedArguments(\Illuminate\Support\Facades\Gate::allows(), 0, argumentsSet('auth'));

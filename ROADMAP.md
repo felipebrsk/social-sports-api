@@ -29,6 +29,9 @@
   - [x] Resource `ProfileResource`, DTO `UpdateProfile`, Request `ProfileUpdateRequest`.
   - [x] Adicionar ao Endpoint `GET /me` (`user.me`): Dados do perfil + redes sociais.
   - [x] Endpoint `PUT /profiles` (`profiles.update`): Atualizar bio, foto, WhatsApp e Instagram.
+- [x] **1.8. Login Social (`GoogleController`)**
+  - [x] Resource `GoogleRequest`, DTO `GoogleAuthentication`.
+  - [x] Adicionar ao Endpoint `POST /authentication/oauth/google` (`authentication.oauth.google`): Callback de Login Social - Devolução do Token.
 
 ---
 

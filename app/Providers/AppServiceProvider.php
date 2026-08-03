@@ -114,14 +114,12 @@ class AppServiceProvider extends ServiceProvider
      */
     private function configurePasswordResetUrl(): void
     {
+        // TODO: Adjust production
         ResetPassword::createUrlUsing(function (mixed $notifiable, string $token) {
-            /** @var string $baseUrl */
-            $baseUrl = config('app.frontend.base_url');
-
-            $baseUrl = rtrim($baseUrl, '/');
-
             /** @var User $notifiable */
-            return "{$baseUrl}/password/reset/{$token}/?email={$notifiable->getEmailForPasswordReset()}";
+            $email = urlencode($notifiable->getEmailForPasswordReset());
+
+            return "arenago://password/reset/{$token}?email={$email}";
         });
     }
 }

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RoleSeeder::class,
             SportSeeder::class,
+            ProviderSeeder::class,
             MediaTypeSeeder::class,
             SkillLevelSeeder::class,
             PaymentTypeSeeder::class,

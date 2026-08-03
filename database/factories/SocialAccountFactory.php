@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\GameSessionRequestStatus;
+use App\Models\SocialAccount;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<GameSessionRequestStatus>
+ * @extends Factory<SocialAccount>
  */
-class GameSessionRequestStatusFactory extends Factory
+class SocialAccountFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class GameSessionRequestStatusFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            //
         ];
     }
 }

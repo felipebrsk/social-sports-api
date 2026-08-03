@@ -8,6 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @mixin GameSession
+ * @property-read int $approved_requests_count
  */
 class GameSessionResource extends JsonResource
 {
@@ -25,6 +26,8 @@ class GameSessionResource extends JsonResource
             'description' => $this->description,
             'max_players' => $this->max_players,
             'external_players_count' => $this->external_players_count,
+            'approved_requests_count' => $this->approved_requests_count,
+            'available_spots' => max(0, $this->max_players - ($this->approved_requests_count + $this->external_players_count)),
             'sport' => SportResource::make($this->whenLoaded('sport')),
             'creator' => CreatorResource::make($this->whenLoaded('creator')),
             'skill_level' => SkillLevelResource::make($this->whenLoaded('skillLevel')),

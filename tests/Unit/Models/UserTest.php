@@ -52,6 +52,7 @@ class UserTest extends BaseModelTesting implements
             'email',
             'blocked',
             'password',
+            'email_verified_at',
         ];
 
         $this->assertHasFillables($fillable);

@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     Authentication\LoginController,
     Authentication\RegisterController,
     Authentication\VerificationController,
+    Authentication\Oauth\GoogleController,
     Authentication\ResetPasswordController,
     Authentication\ForgotPasswordController,
 };
@@ -22,4 +23,8 @@ Route::prefix('authentication')->name('authentication.')->group(function () {
 
     Route::post('login', LoginController::class)->name('login');
     Route::post('register', RegisterController::class)->name('register');
+
+    Route::prefix('oauth')->group(function () {
+        Route::post('google', GoogleController::class)->name('oauth.google');
+    });
 });
