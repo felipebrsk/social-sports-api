@@ -27,7 +27,7 @@ class VenueFilterRequest extends BaseFilterRequest
             'city' => ['sometimes', 'string', 'max:255'],
             'state' => ['sometimes', 'string', 'size:2'],
             'search' => ['sometimes', 'string', 'max:255'],
-            'limit' => ['required', 'numeric', 'between:1,50'],
+            'per_page' => ['required', 'numeric', 'between:1,50'],
             'radius_km' => ['sometimes', 'numeric', 'between:1,30'],
             'latitude' => ['sometimes', 'numeric', 'between:-90,90'],
             'longitude' => ['sometimes', 'numeric', 'between:-180,180'],

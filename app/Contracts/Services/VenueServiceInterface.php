@@ -3,7 +3,7 @@
 namespace App\Contracts\Services;
 
 use App\Models\Venue;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * @extends AbstractServiceInterface<Venue>
@@ -14,9 +14,9 @@ interface VenueServiceInterface extends AbstractServiceInterface
      * Search venues applying GPS, city, sport and text search.
      *
      * @param array<string, mixed> $params
-     * @return Collection<int, Venue>
+     * @return LengthAwarePaginator<int, Venue>
      */
-    public function searchVenues(array $params): Collection;
+    public function searchVenues(array $params): LengthAwarePaginator;
 
     /**
      * Get the venue details, including distance calculation and coords.

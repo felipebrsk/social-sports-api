@@ -12,6 +12,7 @@ use App\Contracts\Filters\{
     CriterionFilterInterface,
     FilterableRepositoryInterface,
 };
+use Illuminate\Contracts\Pagination\CursorPaginator;
 
 /**
  * @template TModel of Model
@@ -89,6 +90,17 @@ interface AbstractRepositoryInterface extends FilterableRepositoryInterface
      * @return LengthAwarePaginator<int, TModel>
      */
     public function paginate(?int $perPage = null): LengthAwarePaginator;
+
+    /**
+     * Cursor paginates the result after aplying the criteria.
+     *
+     * @param int|null $perPage
+     * @param array<int, string> $columns
+     * @param string $cursorName
+     * @param string|null $cursor
+     * @return CursorPaginator<int, TModel>
+     */
+    public function cursorPaginate(?int $perPage = null, array $columns = ['*'], string $cursorName = 'cursor', ?string $cursor = null): CursorPaginator;
 
     /**
      * Should have method all.

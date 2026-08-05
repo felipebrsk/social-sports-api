@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Team;
+use App\Casts\StorageUrl;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -59,6 +60,7 @@ class TeamTest extends BaseModelTesting implements
             'id' => 'int',
             'sport_id' => 'int',
             'leader_id' => 'int',
+            'logo' => StorageUrl::class,
         ];
 
         $this->assertHasCasts($casts);

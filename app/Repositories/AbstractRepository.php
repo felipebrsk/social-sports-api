@@ -11,6 +11,7 @@ use App\Filters\{
     LimitCriteria,
     FilterCriteria,
 };
+use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Database\Eloquent\{
     Model,
     Builder,
@@ -240,6 +241,22 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
         $perPage = $perPage ?? $this->defaultPerPage;
 
         $results = $this->applyCriteria()->paginate($perPage)->withQueryString();
+
+        $this->resetScope();
+
+        return $results;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function cursorPaginate(?int $perPage = null, array $columns = ['*'], string $cursorName = 'cursor', ?string $cursor = null): CursorPaginator
+    {
+        $perPage ??= $this->defaultPerPage;
+
+        $results = $this
+            ->applyCriteria()
+            ->cursorPaginate($perPage, $columns, $cursorName, $cursor);
 
         $this->resetScope();
 

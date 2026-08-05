@@ -11,6 +11,7 @@ use App\Filters\Venue\VenueSearchFilter;
 use Illuminate\Database\Eloquent\Collection;
 use App\Filters\Venue\CalculateDistanceFilter;
 use App\Contracts\Repositories\VenueRepositoryInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class VenueServiceTest extends TestCase
 {
@@ -60,14 +61,14 @@ class VenueServiceTest extends TestCase
     public function test_search_venues_applies_select_relations_counts_and_criteria(): void
     {
         $params = [
-            'limit' => 15,
+            'per_page' => 15,
             'city' => 'Salvador',
         ];
 
         /** @var Venue&MockInterface $venue */
         $venue = Mockery::mock(Venue::class);
 
-        $expectedCollection = new Collection([$venue]);
+        $expectedCollection = new LengthAwarePaginator([$venue], 1, 15);
 
         $this->repository
             ->shouldReceive('select')
@@ -101,8 +102,9 @@ class VenueServiceTest extends TestCase
             ->with(Mockery::type(VenueSearchFilter::class))
             ->andReturnSelf();
         $this->repository
-            ->shouldReceive('all')
+            ->shouldReceive('paginate')
             ->once()
+            ->with($params['per_page'])
             ->andReturn($expectedCollection);
 
         $result = $this->service->searchVenues($params);
@@ -124,7 +126,7 @@ class VenueServiceTest extends TestCase
             ],
         ];
 
-        $expectedCollection = new Collection();
+        $expectedCollection = new LengthAwarePaginator([], 0, 15);
 
         $this->repository
             ->shouldReceive('select')
@@ -145,8 +147,9 @@ class VenueServiceTest extends TestCase
                 return true;
             }))->andReturnSelf();
         $this->repository
-            ->shouldReceive('all')
+            ->shouldReceive('paginate')
             ->once()
+            ->with(15)
             ->andReturn($expectedCollection);
 
         $result = $this->service->searchVenues($params);

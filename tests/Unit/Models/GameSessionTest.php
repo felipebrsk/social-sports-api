@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Tests\Contracts\Models\{
     ShouldTestCasts,
     ShouldTestTable,
@@ -97,6 +98,7 @@ class GameSessionTest extends BaseModelTesting implements
             'skillLevel' => BelongsTo::class,
             'visitorTeam' => BelongsTo::class,
             'conversations' => HasMany::class,
+            'socialLinks' => MorphMany::class,
         ];
 
         $this->assertHasRelations($relations);

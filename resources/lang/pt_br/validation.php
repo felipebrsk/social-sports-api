@@ -216,7 +216,10 @@ return [
         'file' => 'arquivo',
         'radius_km' => 'raio em km',
         'sport_id' => 'esporte',
+        'venue_id' => 'quadra',
+        'skill_level_id' => 'nível de habilidade',
         'id_token' => 'token',
+        'only_available' => 'apenas disponíveis',
     ],
 
     'password' => [

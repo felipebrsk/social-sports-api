@@ -2,20 +2,18 @@
 
 namespace App\Services;
 
-use App\Enums\GameSessionRequestStatusEnum;
 use App\Models\Venue;
 use Illuminate\Support\Carbon;
 use App\Enums\GameSessionStatusEnum;
+use Illuminate\Database\Eloquent\Builder;
+use App\Enums\GameSessionRequestStatusEnum;
 use App\Contracts\Services\VenueServiceInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Contracts\Repositories\VenueRepositoryInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use App\Filters\Venue\{
     VenueSearchFilter,
     CalculateDistanceFilter,
-};
-use Illuminate\Database\Eloquent\{
-    Builder,
-    Collection,
 };
 
 /**
@@ -37,10 +35,13 @@ class VenueService extends AbstractService implements VenueServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function searchVenues(array $params): Collection
+    public function searchVenues(array $params): LengthAwarePaginator
     {
         /** @var array<string, float|int|string|null> $filters */
         $filters = $params['filter_by'] ?? $params;
+
+        /** @var int $perPage */
+        $perPage = $params['per_page'] ?? 15;
 
         $now = Carbon::now()->toDateTimeString();
 
@@ -68,7 +69,7 @@ class VenueService extends AbstractService implements VenueServiceInterface
                     ->where('end_time', '>=', $now)
                     ->whereNotIn('game_session_status_id', $invalidStatusIds);
             },
-        ])->withCriteria(new VenueSearchFilter($filters))->all();
+        ])->withCriteria(new VenueSearchFilter($filters))->paginate($perPage);
     }
 
     /**

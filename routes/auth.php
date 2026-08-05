@@ -6,10 +6,12 @@ use App\Http\Controllers\{
     SportController,
     VenueController,
     ProfileController,
+    GameSessionController,
 };
 
 Route::get('me', MeController::class)->name('user.me');
 Route::get('sports', SportController::class)->name('sports.index');
 Route::put('profiles', ProfileController::class)->name('profiles.update');
 
+Route::apiResource('game-sessions', GameSessionController::class);
 Route::apiResource('venues', VenueController::class)->only(['index', 'show']);

@@ -84,7 +84,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
     {
         yield 'only required fields can proceed' => [
             'data' => [
-                'limit' => fake()->numberBetween(1, 50),
+                'per_page' => fake()->numberBetween(1, 50),
             ],
         ];
 
@@ -95,7 +95,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
                 'city' => fake()->city(),
                 'state' => 'BA',
                 'search' => 'Arena Beach',
-                'limit' => 20,
+                'per_page' => 20,
                 'radius_km' => 15,
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
@@ -108,42 +108,42 @@ class VenueFilterRequestTest extends BaseRequestTesting
             'data' => [
                 'id' => '10',
                 'sport_id' => '5',
-                'limit' => '50',
+                'per_page' => '50',
                 'radius_km' => '30',
                 'latitude' => '-12.9714',
                 'longitude' => '-38.5014',
             ],
         ];
 
-        yield 'boundary limit at minimum' => [
+        yield 'boundary per_page at minimum' => [
             'data' => [
-                'limit' => 1,
+                'per_page' => 1,
             ],
         ];
 
-        yield 'boundary limit at maximum' => [
+        yield 'boundary per_page at maximum' => [
             'data' => [
-                'limit' => 50,
+                'per_page' => 50,
             ],
         ];
 
         yield 'boundary radius_km at minimum' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'radius_km' => 1,
             ],
         ];
 
         yield 'boundary radius_km at maximum' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'radius_km' => 30,
             ],
         ];
 
         yield 'sort_order with desc' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'sort_order' => 'desc',
             ],
         ];
@@ -156,16 +156,16 @@ class VenueFilterRequestTest extends BaseRequestTesting
      */
     public static function invalidDataProvider(): Generator
     {
-        yield 'missing required limit field' => [
+        yield 'missing required per_page field' => [
             'data' => [],
             'expectedErrors' => [
-                'limit' => 'O campo limite é obrigatório.',
+                'per_page' => 'O campo por página é obrigatório.',
             ],
         ];
 
         yield 'invalid numeric fields' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'id' => 'not-numeric',
                 'sport_id' => 'not-numeric',
                 'latitude' => 'abc',
@@ -181,27 +181,27 @@ class VenueFilterRequestTest extends BaseRequestTesting
             ],
         ];
 
-        yield 'limit below minimum' => [
+        yield 'per_page below minimum' => [
             'data' => [
-                'limit' => 0,
+                'per_page' => 0,
             ],
             'expectedErrors' => [
-                'limit' => 'O campo limite deve ser entre 1 e 50.',
+                'per_page' => 'O campo por página deve ser entre 1 e 50.',
             ],
         ];
 
-        yield 'limit above maximum' => [
+        yield 'per_page above maximum' => [
             'data' => [
-                'limit' => 51,
+                'per_page' => 51,
             ],
             'expectedErrors' => [
-                'limit' => 'O campo limite deve ser entre 1 e 50.',
+                'per_page' => 'O campo por página deve ser entre 1 e 50.',
             ],
         ];
 
         yield 'radius_km below minimum' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'radius_km' => 0,
             ],
             'expectedErrors' => [
@@ -211,7 +211,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'radius_km above maximum' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'radius_km' => 31,
             ],
             'expectedErrors' => [
@@ -221,7 +221,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'state code invalid size' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'state' => 'BAH',
             ],
             'expectedErrors' => [
@@ -231,7 +231,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'string max length exceeded for city and search' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'city' => str_repeat('a', 256),
                 'search' => str_repeat('b', 256),
             ],
@@ -243,7 +243,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'latitude exceeds negative boundary' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'latitude' => -90.0001,
             ],
             'expectedErrors' => [
@@ -253,7 +253,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'latitude exceeds positive boundary' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'latitude' => 90.0001,
             ],
             'expectedErrors' => [
@@ -263,7 +263,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'longitude exceeds negative boundary' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'longitude' => -180.0001,
             ],
             'expectedErrors' => [
@@ -273,7 +273,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'longitude exceeds positive boundary' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'longitude' => 180.0001,
             ],
             'expectedErrors' => [
@@ -283,7 +283,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'invalid sort_by column' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'sort_by' => 'unallowed_column',
             ],
             'expectedErrors' => [
@@ -293,7 +293,7 @@ class VenueFilterRequestTest extends BaseRequestTesting
 
         yield 'invalid sort_order value' => [
             'data' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'sort_order' => 'invalid_order',
             ],
             'expectedErrors' => [

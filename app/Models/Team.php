@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Casts\StorageUrl;
 use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -35,6 +36,7 @@ class Team extends Model
         return [
             'sport_id' => 'int',
             'leader_id' => 'int',
+            'logo' => StorageUrl::class,
         ];
     }
 

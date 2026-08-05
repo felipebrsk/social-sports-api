@@ -54,7 +54,7 @@ class VenueIndexTest extends BaseIntegrationTesting
         $this->actingAsGuest();
 
         $this->getJson(route($this->getRouteName(), [
-            'limit' => 10,
+            'per_page' => 10,
         ]))->assertUnauthorized();
     }
 
@@ -84,7 +84,7 @@ class VenueIndexTest extends BaseIntegrationTesting
      *
      * @return void
      */
-    public function test_if_can_list_venues_with_required_limit_filter(): void
+    public function test_if_can_list_venues_with_required_per_page_filter(): void
     {
         $venue = $this->createDummyVenue([
             'name' => 'Arena Central',
@@ -94,7 +94,7 @@ class VenueIndexTest extends BaseIntegrationTesting
         ]);
 
         $this->getJson(route($this->getRouteName(), [
-            'limit' => 10,
+            'per_page' => 10,
         ]))->assertOk()->assertJsonStructure([
             'data' => [
                 '*' => [
@@ -126,7 +126,7 @@ class VenueIndexTest extends BaseIntegrationTesting
         $otherVenue = $this->createDummyVenue(['name' => 'Quadra do Centro']);
 
         $this->getJson(route($this->getRouteName(), [
-            'limit' => 10,
+            'per_page' => 10,
             'search' => 'Pituba',
         ]))->assertOk()->assertJsonFragment([
             'id' => $matchingVenue->id,
@@ -152,7 +152,7 @@ class VenueIndexTest extends BaseIntegrationTesting
         $venueWithSportB->sports()->attach($sportB->id);
 
         $this->getJson(route($this->getRouteName(), [
-            'limit' => 10,
+            'per_page' => 10,
             'sport_id' => $sportA->id,
         ]))->assertOk()->assertJsonFragment([
             'id' => $venueWithSportA->id,
@@ -182,7 +182,7 @@ class VenueIndexTest extends BaseIntegrationTesting
         ]);
 
         $response = $this->getJson(route($this->getRouteName(), [
-            'limit' => 10,
+            'per_page' => 10,
             'latitude' => $userLat,
             'longitude' => $userLng,
             'radius_km' => 10,
@@ -237,8 +237,9 @@ class VenueIndexTest extends BaseIntegrationTesting
             'game_session_status_id' => GameSessionStatusEnum::FINISHED->value,
         ]);
 
-        $this->getJson(route($this->getRouteName(), ['limit' => 10]))
-            ->assertOk()
+        $this->getJson(route($this->getRouteName(), [
+            'per_page' => 10,
+        ]))->assertOk()
             ->assertJsonPath('data.0.id', $venue->id)
             ->assertJsonPath('data.0.game_sessions_count', 4)
             ->assertJsonPath('data.0.upcoming_games_count', 1)
@@ -252,23 +253,23 @@ class VenueIndexTest extends BaseIntegrationTesting
      */
     public static function invalidVenueQueryPayloadsProvider(): Generator
     {
-        yield 'missing required limit field' => [
+        yield 'missing required per_page field' => [
             'payload' => [],
             'expectedErrorMessages' => [
-                'limit' => 'O campo limite \u00e9 obrigat\u00f3rio.',
+                'per_page' => 'O campo por p\u00e1gina \u00e9 obrigat\u00f3rio.',
             ],
         ];
 
         yield 'invalid numeric data types' => [
             'payload' => [
-                'limit' => 'abc',
+                'per_page' => 'abc',
                 'sport_id' => 'not-a-number',
                 'radius_km' => 'abc',
                 'latitude' => 'invalid-lat',
                 'longitude' => 'invalid-lng',
             ],
             'expectedErrorMessages' => [
-                'limit' => 'O campo limite deve ser um n\u00famero.',
+                'per_page' => 'O campo por p\u00e1gina deve ser um n\u00famero.',
                 'sport_id' => 'O campo esporte deve ser um n\u00famero.',
                 'radius_km' => 'O campo raio em km deve ser um n\u00famero.',
                 'latitude' => 'O campo latitude deve ser um n\u00famero.',
@@ -276,27 +277,27 @@ class VenueIndexTest extends BaseIntegrationTesting
             ],
         ];
 
-        yield 'limit boundary below minimum' => [
+        yield 'per_page boundary below minimum' => [
             'payload' => [
-                'limit' => 0,
+                'per_page' => 0,
             ],
             'expectedErrorMessages' => [
-                'limit' => 'O campo limite deve ser entre 1 e 50.',
+                'per_page' => 'O campo por p\u00e1gina deve ser entre 1 e 50.',
             ],
         ];
 
-        yield 'limit boundary above maximum' => [
+        yield 'per_page boundary above maximum' => [
             'payload' => [
-                'limit' => 51,
+                'per_page' => 51,
             ],
             'expectedErrorMessages' => [
-                'limit' => 'O campo limite deve ser entre 1 e 50.',
+                'per_page' => 'O campo por p\u00e1gina deve ser entre 1 e 50.',
             ],
         ];
 
         yield 'radius_km boundary values' => [
             'payload' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'radius_km' => 31,
             ],
             'expectedErrorMessages' => [
@@ -306,7 +307,7 @@ class VenueIndexTest extends BaseIntegrationTesting
 
         yield 'state code invalid size' => [
             'payload' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'state' => 'BAH',
             ],
             'expectedErrorMessages' => [
@@ -316,7 +317,7 @@ class VenueIndexTest extends BaseIntegrationTesting
 
         yield 'coordinates exceeding negative and positive ranges' => [
             'payload' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'latitude' => 95.0000,
                 'longitude' => -185.0000,
             ],
@@ -328,7 +329,7 @@ class VenueIndexTest extends BaseIntegrationTesting
 
         yield 'invalid sort_order value' => [
             'payload' => [
-                'limit' => 10,
+                'per_page' => 10,
                 'sort_order' => 'unsupported_order',
             ],
             'expectedErrorMessages' => [

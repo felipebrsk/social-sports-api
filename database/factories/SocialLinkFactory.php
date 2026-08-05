@@ -2,8 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\SocialLink;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\{
+    SocialLink,
+    SocialNetwork,
+};
 
 /**
  * @extends Factory<SocialLink>
@@ -18,7 +21,8 @@ class SocialLinkFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'url' => fake()->url(),
+            'social_network_id' => SocialNetwork::factory(),
         ];
     }
 }

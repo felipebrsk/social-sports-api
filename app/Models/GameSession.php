@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\{
     HasOne,
     HasMany,
     BelongsTo,
+    MorphMany,
 };
 
 #[Fillable([
@@ -153,5 +154,15 @@ class GameSession extends Model
     public function requests(): HasMany
     {
         return $this->hasMany(GameSessionRequest::class);
+    }
+
+    /**
+     * Get all of the social links for the GameSession
+     *
+     * @return MorphMany<SocialLink, $this>
+     */
+    public function socialLinks(): MorphMany
+    {
+        return $this->morphMany(SocialLink::class, 'linkable');
     }
 }

@@ -44,11 +44,11 @@
   - [x] `VenueController`, `index` (`GET /venues` -> `venues.index`): Busca com filtros por `sport_id`, GPS (Haversine) ou Cidade/Estado.
   - [x] `VenueController`, `show` (`GET /venues/{venue}` -> `venues.show`): Detalhes da quadra, endereço, fotos e esportes aceitos.
 - [ ] **2.3. Sessões de Jogo (`GameSession`)**
-  - [ ] `CreateGameSessionController` (`POST /game-sessions` -> `game-sessions.store`): Criar jogo com verificação de sobreposição de horários na mesma quadra. Tratar flag `force_create`.
-  - [ ] `ListGameSessionsController` (`GET /game-sessions` -> `game-sessions.index`): Feed principal por esporte, data, nível de habilidade e proximidade.
-  - [ ] `ShowGameSessionController` (`GET /game-sessions/{gameSession}` -> `game-sessions.show`): Retorna organizador, quadra, lista de participantes e links do grupo de WhatsApp.
-  - [ ] `UpdateGameSessionController` (`PUT /game-sessions/{gameSession}` -> `game-sessions.update` - Organizador).
-  - [ ] `CancelGameSessionController` (`PATCH /game-sessions/{gameSession}/cancel` -> `game-sessions.cancel` - Organizador).
+  - [x] `GameSessionsController`, `index` (`GET /game-sessions` -> `game-sessions.index`): Feed principal por esporte, data, nível de habilidade e proximidade.
+  - [x] `GameSessionController`, `show` (`GET /game-sessions/{gameSession}` -> `game-sessions.show`): Retorna organizador, quadra, lista de participantes e links do grupo de WhatsApp.
+  - [ ] `GameSessionController`, `store` (`POST /game-sessions` -> `game-sessions.store`): Criar jogo com verificação de sobreposição de horários na mesma quadra. Tratar flag `force_create`.
+  - [ ] `GameSessionController`, `update` (`PUT /game-sessions/{gameSession}` -> `game-sessions.update` - Organizador).
+  - [ ] `GameSessionController`, `cancel` (`PATCH /game-sessions/{gameSession}/cancel` -> `game-sessions.cancel` - Organizador).
 - [ ] **2.4. Participação e Vagas (`GameSessionRequest`)**
   - [ ] `CreateGameSessionRequestController` (`POST /game-sessions/{gameSession}/requests` -> `game-sessions.requests.store`): Pedir para entrar no jogo.
   - [ ] `ListGameSessionRequestsController` (`GET /game-sessions/{gameSession}/requests` -> `game-sessions.requests.index` - Organizador).
